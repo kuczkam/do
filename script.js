@@ -7,5 +7,4 @@
             console.log(this.tasks);
         }
     }
-    tasks.tasks();
 })();
