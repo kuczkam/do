@@ -1,14 +1,15 @@
 let tasks = (function(){
     'use strict';
   
-    const tasksList = [];
+    const tasksList = ['test'];
 
     const addTask = function() {
       const input = document.getElementById('task-input');
       if (input != null) {
         tasksList.push(input.value);
       }
-      this.taskList();
+      taskList();
+      input.value = '';
     }
 
     const bindEvents = function() {
@@ -24,14 +25,16 @@ let tasks = (function(){
           element.innerHTML = el;
           list.appendChild(element);
       });
-  };
+  }
     const init = function() {
       bindEvents();
       taskList();
-  };
+  }
     return {
         init: init,
         addTask: addTask,
         taskList: taskList
     }
   })();
+  tasks.init();
+ 
