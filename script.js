@@ -1,21 +1,37 @@
 let tasks = (function(){
     'use strict';
- 
-    const tasksList = [];
-    const input = document.getElementsByClassName('task-input');
-    const button = document.getElementsByClassName('task-input__button');
- 
-    return {
-        getTasks () {
-          return tasksList
-        },
-        addTask (name) {
-          tasksList.push(name);
   
-          return this;
-        }
+    const tasksList = [];
+
+    const addTask = function() {
+      const input = document.getElementById('task-input');
+      if (input != null) {
+        tasksList.push(input.value);
+      }
+      this.taskList();
+    }
+
+    const bindEvents = function() {
+      document.getElementById('task-input__button').addEventListener('click', addTask);
+    }
+
+    const taskList = function() {
+      const list = document.querySelector('#tasks');
+      list.innerHTML = '';
+
+      tasksList.forEach(function(el) {
+          const element = document.createElement('li');
+          element.innerHTML = el;
+          list.appendChild(element);
+      });
+  };
+    const init = function() {
+      bindEvents();
+      taskList();
+  };
+    return {
+        init: init,
+        addTask: addTask,
+        taskList: taskList
     }
   })();
- 
-  tasks.addTask('dupa')
-  console.log(tasks.addTask('test').getTasks())
