@@ -6,7 +6,7 @@ let tasks = (function(){
     const list = document.getElementById('tasks');
 
     const addTask = function() {
-      if (input != null) {
+      if (input.value != '') {
         tasksList.push(input.value);
       }
       taskList();
@@ -23,12 +23,12 @@ let tasks = (function(){
 
       tasksList.forEach(function(el) {
           const element = document.createElement('li');
-          const remove = document.createElement('input');
+          const remove = document.createElement('button');
+          let rm = document.createTextNode('remove');
 
           element.setAttribute('class', 'todo-element');
-          remove.setAttribute('type', 'button');
           remove.setAttribute('id', 'task-remove__button');
-          remove.setAttribute('value', 'remove');
+          remove.appendChild(rm);
           element.innerHTML = el;
           element.appendChild(remove);
           list.appendChild(element);
@@ -39,6 +39,7 @@ let tasks = (function(){
       if (e.target.closest('#task-remove__button') !== null) {
         const todoElem = e.target.closest('.todo-element');
         todoElem.parentNode.removeChild(todoElem);
+        tasksList.splice(todoElem, 1);
       }
     }
 
