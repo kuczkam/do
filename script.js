@@ -4,6 +4,7 @@ let tasks = (function(){
     const tasksList = [];
     const input = document.getElementById('task-input');
     const list = document.getElementById('tasks');
+    const frag = document.createDocumentFragment();
 
     const addTask = function() {
       if (input.value != '') {
@@ -22,16 +23,17 @@ let tasks = (function(){
       list.innerHTML = '';
 
       tasksList.forEach(function(el) {
-          const element = document.createElement('li');
-          const remove = document.createElement('button');
-          let rm = document.createTextNode('remove');
+        let element = document.createElement('li');
+        let remove = document.createElement('button');
+        let rm = document.createTextNode('remove');
 
-          element.setAttribute('class', 'todo-element');
-          remove.setAttribute('id', 'task-remove__button');
-          remove.appendChild(rm);
-          element.innerHTML = el;
-          element.appendChild(remove);
-          list.appendChild(element);
+        element.setAttribute('class', 'todo-element');
+        remove.setAttribute('id', 'task-remove__button');
+        remove.appendChild(rm);
+        element.innerHTML = el;
+        element.appendChild(remove);
+        frag.appendChild(element);
+        list.appendChild(frag);
       });
   }
 
