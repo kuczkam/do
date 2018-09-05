@@ -5,11 +5,11 @@ let tasks = (function(){
   const input = document.getElementById('task-input');
   const list = document.getElementById('tasks');
 
-  const addTask = function() {
+  const addTask = function(ev) {    
     if (input.value != '') {
       tasksList.push(input.value);
     }
-    taskList();
+    taskList(input.value);
     input.value = '';
   }
 
@@ -18,24 +18,18 @@ let tasks = (function(){
     list.addEventListener('click', deleteTask);
   }
 
-  const taskList = function() {
-    const frag = document.createDocumentFragment();
-    list.innerHTML = '';
+  const taskList = function(value) {
+    const element = document.createElement('li');
+    const remove = document.createElement('button');
+    const rm = document.createTextNode('remove');
 
-    tasksList.forEach(function(el) {
-      const element = document.createElement('li');
-      const remove = document.createElement('button');
-      const rm = document.createTextNode('remove');
-
-      element.setAttribute('class', 'todo-element');
-      remove.setAttribute('id', 'task-remove__button');
-      remove.appendChild(rm);
-      element.innerHTML = el;
-      element.appendChild(remove);
-      frag.appendChild(element);
-      list.appendChild(frag);
-    });
-}
+    element.innerText = value;
+    element.setAttribute('class', 'todo-element');
+    remove.setAttribute('id', 'task-remove__button');
+    remove.appendChild(rm);
+    element.appendChild(remove);
+    list.appendChild(element);
+  }
 
   const deleteTask = function(e) {
     if (e.target.closest('#task-remove__button') !== null) {
@@ -47,8 +41,7 @@ let tasks = (function(){
 
   const init = function() {
     bindEvents();
-    taskList();
-}
+  }
   return {
       init: init,
       addTask: addTask,
