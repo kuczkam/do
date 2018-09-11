@@ -14,8 +14,14 @@ let tasks = (function() {
   }
 
   const bindEvents = function() {
-      document.getElementById('task-input__button').addEventListener('click', addTask);
-      list.addEventListener('click', deleteTask);
+    input.addEventListener('keyup', function(e){
+        e.preventDefault();
+        if (e.keyCode === 13) {
+          document.getElementById('task-input__button').click();
+        }
+    });
+    document.getElementById('task-input__button').addEventListener('click', addTask);
+    list.addEventListener('click', deleteTask);
   }
 
   const taskList = function(value) {
