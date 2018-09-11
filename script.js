@@ -4,6 +4,7 @@ let tasks = (function() {
   const tasksList = [];
   const input = document.getElementById('task-input');
   const list = document.getElementById('tasks');
+  const button = document.getElementById('task-input__button');
 
   const addTask = function() {
       if (input.value != '') {
@@ -17,10 +18,10 @@ let tasks = (function() {
     input.addEventListener('keyup', function(e){
         e.preventDefault();
         if (e.keyCode === 13) {
-          document.getElementById('task-input__button').click();
+          button.click();
         }
     });
-    document.getElementById('task-input__button').addEventListener('click', addTask);
+    button.addEventListener('click', addTask);
     list.addEventListener('click', deleteTask);
   }
 
