@@ -5,13 +5,15 @@ let tasks = (function() {
   const input = document.getElementById('task-input');
   const list = document.getElementById('tasks');
   const button = document.getElementById('task-input__button');
+  const date = document.getElementById('task-input__date');
 
   const addTask = function() {
       if (input.value != '') {
           tasksList.push(input.value);
+          taskList(input.value);
       }
-      taskList(input.value);
       input.value = '';
+      date.value = '';
   }
 
   const bindEvents = function() {
@@ -28,13 +30,16 @@ let tasks = (function() {
   const taskList = function(value) {
       const element = document.createElement('li');
       const remove = document.createElement('button');
+      const taskDate = document.createElement('div');
       const rm = document.createTextNode('remove');
 
+      taskDate.innerText = date.value
       element.innerText = value;
       element.setAttribute('class', 'todo-element');
       remove.setAttribute('id', 'task-remove__button');
       remove.appendChild(rm);
       element.appendChild(remove);
+      element.appendChild(taskDate);
       list.appendChild(element);
   }
 
