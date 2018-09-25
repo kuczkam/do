@@ -8,9 +8,10 @@ let tasks = (function() {
     const date = document.getElementById('task-input__date');
   
     const addTask = function() {
-        if (input.value != '') {
+        if (input.value !== '') {
             tasksList.push(input.value);
             taskList(input.value);
+            console.log(tasksList);
         }
         input.value = '';
         date.value = '';
@@ -47,9 +48,14 @@ let tasks = (function() {
   
     const deleteTask = function(e) {
         if (e.target.closest('#task-remove__button') !== null) {
-            const todoElem = e.target.closest('.todo-element');
-            todoElem.parentNode.removeChild(todoElem);
-            tasksList.splice(todoElem, 1);
+            let p = e.target.parentElement;
+            let index = Array.prototype.indexOf.call(p.children, e.target);
+            const todoElem = e.target.closest('.todo-element');           
+            if (e.target !== list) {
+                e.target.innerHTML = index;
+                todoElem.remove(index);
+                tasksList.splice(index, 1);
+            }
         }
     }
 
@@ -63,14 +69,11 @@ let tasks = (function() {
         }
     }
 
-    const init = function() {
-        bindEvents();
-    }
     return {
-        init: init,
+        bindEvents: bindEvents,
         addTask: addTask,
         taskList: taskList,
         deleteTask: deleteTask
     }
   })();
-  tasks.init();
+  tasks.bindEvents();
