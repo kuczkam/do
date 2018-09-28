@@ -11,7 +11,6 @@ let tasks = (function() {
         if (input.value !== '') {
             tasksList.push(input.value);
             taskList(input.value);
-            console.log(tasksList);
         }
         input.value = '';
         date.value = '';
@@ -48,14 +47,16 @@ let tasks = (function() {
   
     const deleteTask = function(e) {
         if (e.target.closest('#task-remove__button') !== null) {
-            let p = e.target.parentElement;
-            let index = Array.prototype.indexOf.call(p.children, e.target);
-            const todoElem = e.target.closest('.todo-element');           
-            if (e.target !== list) {
-                e.target.innerHTML = index;
-                todoElem.remove(index);
-                tasksList.splice(index, 1);
-            }
+            const todoElem = e.target.closest('LI');
+            todoElem.classList.add('to-remove');
+
+            const li = document.getElementsByClassName('to-remove')[0];
+            var nodes = Array.prototype.slice.call( list.children );
+            var index = nodes.indexOf(li);
+
+            const $todos = document.querySelectorAll('#tasks li');
+            [...$todos].find(($todo, key) => key === index).remove();
+            tasksList.splice(index, 1);     
         }
     }
 
