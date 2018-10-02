@@ -1,16 +1,16 @@
 let tasks = (function() {
     'use strict';
   
-    const tasksList = [];
-    const input = document.getElementById('task-input');
-    const list = document.getElementById('tasks');
-    const button = document.getElementById('task-input__button');
-    const date = document.getElementById('task-input__date');
+    const arrTasks = [];
+    const input = document.getElementById('js__task-input');
+    const list = document.getElementById('js__tasks');
+    const button = document.getElementById('js__task-add');
+    const date = document.getElementById('js__task-date');
   
     const addTask = function() {
         if (input.value !== '') {
-            tasksList.push(input.value);
-            taskList(input.value);
+            arrTasks.push(input.value);
+            createTaskElement(input.value);
         }
         input.value = '';
         date.value = '';
@@ -28,7 +28,7 @@ let tasks = (function() {
       list.addEventListener('click', options);
     }
   
-    const taskList = function(value) {
+    const createTaskElement = function(value) {
         const element = document.createElement('li');
         const remove = document.createElement('button');
         const taskDate = document.createElement('div');
@@ -37,8 +37,8 @@ let tasks = (function() {
         taskDate.innerText = date.value
         element.innerText = value;
         element.setAttribute('class', 'todo-element');
-        element.setAttribute('id', uniqueId());
-        remove.setAttribute('id', 'task-remove__button');
+        element.setAttribute('id', __uniqueId());
+        remove.setAttribute('id', 'js__task-remove');
         remove.appendChild(rm);
         element.appendChild(remove);
         element.appendChild(taskDate);
@@ -46,21 +46,21 @@ let tasks = (function() {
     }
   
     const deleteTask = function(e) {
-        if (e.target.closest('#task-remove__button') !== null) {
+        if (e.target.closest('#js__task-remove') !== null) {
             const todoElem = e.target.closest('LI');
-            todoElem.classList.add('to-remove');
+            todoElem.classList.add('js__to-remove');
 
-            const li = document.getElementsByClassName('to-remove')[0];
+            const li = document.getElementsByClassName('js__to-remove')[0];
             var nodes = Array.prototype.slice.call( list.children );
             var index = nodes.indexOf(li);
 
-            const $todos = document.querySelectorAll('#tasks li');
+            const $todos = document.querySelectorAll('#js__tasks li');
             [...$todos].find(($todo, key) => key === index).remove();
-            tasksList.splice(index, 1);     
+            arrTasks.splice(index, 1);     
         }
     }
 
-    const uniqueId = function() {
+    const __uniqueId = function() {
         return Math.random().toString(36).substr(2, 5);
     }
 
@@ -73,7 +73,7 @@ let tasks = (function() {
     return {
         bindEvents: bindEvents,
         addTask: addTask,
-        taskList: taskList,
+        createTaskElement: createTaskElement,
         deleteTask: deleteTask
     }
   })();
