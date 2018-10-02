@@ -1,4 +1,4 @@
-let tasks = (function() {
+let tasks = (() => {
     'use strict';
   
     const arrTasks = [];
@@ -7,7 +7,7 @@ let tasks = (function() {
     const button = document.getElementById('js__task-add');
     const date = document.getElementById('js__task-date');
   
-    const addTask = function() {
+    const addTask = () => {
         if (input.value !== '') {
             arrTasks.push(input.value);
             createTaskElement(input.value);
@@ -16,8 +16,8 @@ let tasks = (function() {
         date.value = '';
     }
   
-    const bindEvents = function() {
-      input.addEventListener('keyup', function(e){
+    const bindEvents = () => {
+      input.addEventListener('keyup', (e) => {
           e.preventDefault();
           if (e.keyCode === 13) {
             button.click();
@@ -28,7 +28,7 @@ let tasks = (function() {
       list.addEventListener('click', options);
     }
   
-    const createTaskElement = function(value) {
+    const createTaskElement = (value) => {
         const element = document.createElement('li');
         const remove = document.createElement('button');
         const taskDate = document.createElement('div');
@@ -45,7 +45,7 @@ let tasks = (function() {
         list.appendChild(element);
     }
   
-    const deleteTask = function(e) {
+    const deleteTask = (e) => {
         if (e.target.closest('#js__task-remove') !== null) {
             const todoElem = e.target.closest('LI');
             todoElem.classList.add('js__to-remove');
@@ -60,11 +60,11 @@ let tasks = (function() {
         }
     }
 
-    const __uniqueId = function() {
+    const __uniqueId = () => {
         return Math.random().toString(36).substr(2, 5);
     }
 
-    const options = function(e) {
+    const options = (e) => {
         if (e.target.tagName === 'LI') {
             console.log(e.target.id);
         }
