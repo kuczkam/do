@@ -5,11 +5,21 @@
     <title>Do.</title>
   </head>
   <body>
-  <input id="task-input" type="text" placeholder="add task">
-  <input id="task-input__date" type="date">
-  <button id="task-input__button">add task to list</button>
-  <ul id="tasks">
+    <style>
+    .edit-disenable {
+      display: none;
+    }
+    .edit-enable {
+      display: block;
+    }
+    </style>
+  <input id="js__task-input" type="text" placeholder="add task">
+  <input id="js__task-date" type="date">
+  <button id="js__task-add">add task to list</button>
+  <ul id="js__tasks">
   </ul>
+
+  <div id="task-edit" class="edit-disenable"></div>
   <script src="script.js"></script>
 </body>
 </html>
