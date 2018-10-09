@@ -6,6 +6,7 @@ let tasks = (() => {
     const list = document.getElementById('js__tasks');
     const button = document.getElementById('js__task-add');
     const date = document.getElementById('js__task-date');
+    const edit = document.getElementById('task-edit');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -24,23 +25,18 @@ let tasks = (() => {
           }
       });
       button.addEventListener('click', addTask);
-      list.addEventListener('click', deleteTask);
+      edit.addEventListener('click', deleteTask);
       list.addEventListener('click', options);
     }
   
     const createTaskElement = (value) => {
         const element = document.createElement('li');
-        const remove = document.createElement('button');
         const taskDate = document.createElement('div');
-        const rm = document.createTextNode('remove');
   
         taskDate.innerText = date.value
         element.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
-        remove.setAttribute('id', 'js__task-remove');
-        remove.appendChild(rm);
-        element.appendChild(remove);
         element.appendChild(taskDate);
         list.appendChild(element);
     }
@@ -64,8 +60,15 @@ let tasks = (() => {
 
     const options = (e) => {
         if (e.target.tagName === 'LI') {
-            const liElement = e.target.closest('LI');
-            liElement.classList.add('js__to-remove');
+            const item = e.target.closest('LI');
+            const remove = document.createElement('button');
+            const rm = document.createTextNode('remove');
+            item.classList.add('js__to-remove');
+            edit.classList.remove('edit-off'); //do zmiany ta klasa
+            edit.classList.add('edit-on'); //do zmiany ta klasa
+            remove.setAttribute('id', 'js__task-remove');
+            remove.appendChild(rm);
+            edit.appendChild(remove);
             console.log(e.target.id);
         }
     }
