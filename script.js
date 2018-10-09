@@ -45,19 +45,17 @@ let tasks = (() => {
         list.appendChild(element);
     }
   
-    const deleteTask = (e) => {
-        if (e.target.closest('#js__task-remove') !== null) {
-            const todoElem = e.target.closest('LI');
-            todoElem.classList.add('js__to-remove');
+    const __taskIndex = () => {
+        const li = document.getElementsByClassName('js__to-remove')[0];
+        var nodes = Array.prototype.slice.call( list.children );
+        var index = nodes.indexOf(li);
+        return index;
+    }
 
-            const li = document.getElementsByClassName('js__to-remove')[0];
-            var nodes = Array.prototype.slice.call( list.children );
-            var index = nodes.indexOf(li);
-
-            const $todos = document.querySelectorAll('#js__tasks li');
-            [...$todos].find(($todo, key) => key === index).remove();
-            arrTasks.splice(index, 1);     
-        }
+    const deleteTask = (index) => {
+        const $todos = document.querySelectorAll('#js__tasks li');
+        [...$todos].find(($todo, key) => key === __taskIndex()).remove();
+        arrTasks.splice(__taskIndex(), 1);     
     }
 
     const __uniqueId = () => {
@@ -66,6 +64,8 @@ let tasks = (() => {
 
     const options = (e) => {
         if (e.target.tagName === 'LI') {
+            const liElement = e.target.closest('LI');
+            liElement.classList.add('js__to-remove');
             console.log(e.target.id);
         }
     }
@@ -77,4 +77,4 @@ let tasks = (() => {
         deleteTask: deleteTask
     }
   })();
-  tasks.bindEvents();
+tasks.bindEvents();
