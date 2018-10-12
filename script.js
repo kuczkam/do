@@ -6,7 +6,8 @@ let tasks = (() => {
     const list = document.getElementById('js__tasks');
     const button = document.getElementById('js__task-add');
     const date = document.getElementById('js__task-date');
-    const edit = document.getElementById('task-edit');
+    const edit = document.getElementById('task-options');
+    const btnRemove = document.getElementById('js__task-remove');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -25,7 +26,7 @@ let tasks = (() => {
           }
       });
       button.addEventListener('click', addTask);
-      edit.addEventListener('click', deleteTask);
+      btnRemove.addEventListener('click', deleteTask);
       list.addEventListener('click', options);
     }
   
@@ -49,9 +50,13 @@ let tasks = (() => {
     }
 
     const deleteTask = (index) => {
-        const $todos = document.querySelectorAll('#js__tasks li');
-        [...$todos].find(($todo, key) => key === __taskIndex()).remove();
-        arrTasks.splice(__taskIndex(), 1);     
+        if(btnRemove) {
+            const $todos = document.querySelectorAll('#js__tasks li');
+            if ($todos.length > 0) {
+                [...$todos].find(($todo, key) => key === __taskIndex()).remove();
+                arrTasks.splice(__taskIndex(), 1);    
+            } 
+        }
     }
 
     const __uniqueId = () => {
@@ -61,14 +66,8 @@ let tasks = (() => {
     const options = (e) => {
         if (e.target.tagName === 'LI') {
             const item = e.target.closest('LI');
-            const remove = document.createElement('button');
-            const rm = document.createTextNode('remove');
             item.classList.add('js__to-remove');
-            edit.classList.remove('edit-off'); //do zmiany ta klasa
-            edit.classList.add('edit-on'); //do zmiany ta klasa
-            remove.setAttribute('id', 'js__task-remove');
-            remove.appendChild(rm);
-            edit.appendChild(remove);
+
             console.log(e.target.id);
         }
     }
