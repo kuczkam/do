@@ -6,21 +6,23 @@
   </head>
   <body>
     <style>
-    .edit-disenable {
+    .hide {
       display: none;
     }
-    .edit-enable {
+    .visible {
       display: block;
     }
     </style>
-  <input id="js__task-input" type="text" placeholder="add task">
-  <input id="js__task-date" type="date">
-  <button id="js__task-add">add task to list</button>
+    <div id="js__task-add_div" class="hide">
+      <input id="js__task-input" type="text" placeholder="add task">
+      <input id="js__task-date" type="date">
+      <button id="js__task-add">add task to list</button>
+    </div>
   <ul id="js__tasks">
   </ul>
 
   <div id="task-options">
-    <button id="js__task-add">add</button>
+    <button class="js__task-add">add</button>
     <button id="js__task-edit">edit</button>
     <button id="js__task-priority">priority</button>
     <button id="js__task-remove">remove</button>

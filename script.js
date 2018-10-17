@@ -8,6 +8,8 @@ let tasks = (() => {
     const date = document.getElementById('js__task-date');
     const edit = document.getElementById('task-options');
     const btnRemove = document.getElementById('js__task-remove');
+    const btnAddTask = document.querySelector('.js__task-add');
+    const divAddTask = document.getElementById('js__task-add_div');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -19,15 +21,20 @@ let tasks = (() => {
     }
   
     const bindEvents = () => {
+      btnAddTask.addEventListener('click', () => {
+          divAddTask.classList.remove('hide');
+          divAddTask.classList.add('visible');
+      });
       input.addEventListener('keyup', (e) => {
-          e.preventDefault();
-          if (e.keyCode === 13) {
-            button.click();
-          }
+        e.preventDefault();
+        if (e.keyCode === 13) {
+          button.click();
+        }
       });
       button.addEventListener('click', addTask);
       btnRemove.addEventListener('click', deleteTask);
       list.addEventListener('click', options);
+
     }
   
     const createTaskElement = (value) => {
@@ -51,9 +58,9 @@ let tasks = (() => {
 
     const deleteTask = (index) => {
         if(btnRemove) {
-            const $todos = document.querySelectorAll('#js__tasks li');
-            if ($todos.length > 0) {
-                [...$todos].find(($todo, key) => key === __taskIndex()).remove();
+            const todos = document.querySelectorAll('#js__tasks li');
+            if (todos.length > 0) {
+                [...todos].find((todo, key) => key === __taskIndex()).remove();
                 arrTasks.splice(__taskIndex(), 1);    
             } 
         }
