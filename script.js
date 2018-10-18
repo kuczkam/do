@@ -6,10 +6,11 @@ let tasks = (() => {
     const list = document.getElementById('js__tasks');
     const button = document.getElementById('js__task-add');
     const date = document.getElementById('js__task-date');
-    const edit = document.getElementById('task-options');
+    const btnEdittask = document.querySelector('.js__task-edit');
     const btnRemove = document.getElementById('js__task-remove');
     const btnAddTask = document.querySelector('.js__task-add');
     const divAddTask = document.getElementById('js__task-add_div');
+    const divEditTask = document.getElementById('js__task-edit_div');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -25,6 +26,10 @@ let tasks = (() => {
           divAddTask.classList.remove('hide');
           divAddTask.classList.add('visible');
       });
+      btnEdittask.addEventListener('click', () => {
+        divEditTask.classList.remove('hide');
+        divEditTask.classList.add('visible');
+    });
       input.addEventListener('keyup', (e) => {
         e.preventDefault();
         if (e.keyCode === 13) {
