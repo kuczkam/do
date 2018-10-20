@@ -21,27 +21,10 @@ let tasks = (() => {
         date.value = '';
     }
   
-    const bindEvents = () => {
-      btnAddTask.addEventListener('click', () => {
-          divAddTask.classList.remove('hide');
-          divAddTask.classList.add('visible');
-      });
-      btnEdittask.addEventListener('click', () => {
-        divEditTask.classList.remove('hide');
-        divEditTask.classList.add('visible');
-    });
-      input.addEventListener('keyup', (e) => {
-        e.preventDefault();
-        if (e.keyCode === 13) {
-          button.click();
-        }
-      });
-      button.addEventListener('click', addTask);
-      btnRemove.addEventListener('click', deleteTask);
-      list.addEventListener('click', options);
-
+    const __uniqueId = () => {
+        return Math.random().toString(36).substr(2, 5);
     }
-  
+
     const createTaskElement = (value) => {
         const element = document.createElement('li');
         const taskDate = document.createElement('div');
@@ -53,12 +36,19 @@ let tasks = (() => {
         element.appendChild(taskDate);
         list.appendChild(element);
     }
-  
+
     const __taskIndex = () => {
-        const li = document.getElementsByClassName('js__to-remove')[0];
+        const li = document.getElementsByClassName('js__to-edit')[0];
         var nodes = Array.prototype.slice.call( list.children );
         var index = nodes.indexOf(li);
         return index;
+    }
+
+    const editTask = () => {
+        const item = document.getElementsByClassName('js__to-edit');
+        const elementId = item[__taskIndex()];
+        const val = document.getElementById(elementId.id).innerText;
+        divEditTask.innerHTML = val;
     }
 
     const deleteTask = (index) => {
@@ -71,18 +61,35 @@ let tasks = (() => {
         }
     }
 
-    const __uniqueId = () => {
-        return Math.random().toString(36).substr(2, 5);
-    }
-
-    const options = (e) => {
+    const _addClassToFindTask = (e) => {
         if (e.target.tagName === 'LI') {
             const item = e.target.closest('LI');
-            item.classList.add('js__to-remove');
-
-            console.log(e.target.id);
+            item.classList.add('js__to-edit');
+            return e.target.id;
         }
     }
+
+    const bindEvents = () => {
+        btnAddTask.addEventListener('click', () => {
+            divAddTask.classList.remove('hide');
+            divAddTask.classList.add('visible');
+        });
+        btnEdittask.addEventListener('click', () => {
+          divEditTask.classList.remove('hide');
+          divEditTask.classList.add('visible');
+        });
+        input.addEventListener('keyup', (e) => {
+          e.preventDefault();
+          if (e.keyCode === 13) {
+            button.click();
+          }
+        });
+        btnEdittask.addEventListener('click', editTask);
+        button.addEventListener('click', addTask);
+        btnRemove.addEventListener('click', deleteTask);
+        list.addEventListener('click', _addClassToFindTask);
+  
+      }
 
     return {
         bindEvents: bindEvents,
