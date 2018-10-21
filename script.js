@@ -61,6 +61,8 @@ let tasks = (() => {
         const li = document.querySelector('.js__to-edit');
 
         li.innerHTML = newValue;
+        arrTasks[__taskIndex()] = newValue;
+        console.log(arrTasks);
     }
 
     const deleteTask = (index) => {
