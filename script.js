@@ -9,8 +9,10 @@ let tasks = (() => {
     const btnEdittask = document.querySelector('.js__task-edit');
     const btnRemove = document.getElementById('js__task-remove');
     const btnAddTask = document.querySelector('.js__task-add');
+    const btnSaveTask = document.querySelector('.js__task-save');
     const divAddTask = document.getElementById('js__task-add_div');
     const divEditTask = document.getElementById('js__task-edit_div');
+    const editInput = document.getElementById('js__mytask');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -41,14 +43,24 @@ let tasks = (() => {
         const li = document.getElementsByClassName('js__to-edit')[0];
         var nodes = Array.prototype.slice.call( list.children );
         var index = nodes.indexOf(li);
+
         return index;
     }
 
-    const editTask = () => {
-        const item = document.getElementsByClassName('js__to-edit');
-        const elementId = item[__taskIndex()];
-        const val = document.getElementById(elementId.id).innerText;
-        divEditTask.innerHTML = val;
+    const __editTask = () => {
+        const li = document.querySelector('.js__to-edit');
+        const elementId = li.getAttribute('id');
+        const val = document.getElementById(elementId).innerText;
+
+        editInput.value = val;
+        
+    }
+
+    const saveTask = () => {
+        const newValue = editInput.value;
+        const li = document.querySelector('.js__to-edit');
+
+        li.innerHTML = newValue;
     }
 
     const deleteTask = (index) => {
@@ -63,8 +75,13 @@ let tasks = (() => {
 
     const _addClassToFindTask = (e) => {
         if (e.target.tagName === 'LI') {
+            const c = document.querySelector('#js__tasks li.js__to-edit');
             const item = e.target.closest('LI');
+            if ( c !== null) {
+                c.classList.remove('js__to-edit');
+            }
             item.classList.add('js__to-edit');
+
             return e.target.id;
         }
     }
@@ -84,10 +101,11 @@ let tasks = (() => {
             button.click();
           }
         });
-        btnEdittask.addEventListener('click', editTask);
+        btnEdittask.addEventListener('click', __editTask);
         button.addEventListener('click', addTask);
         btnRemove.addEventListener('click', deleteTask);
         list.addEventListener('click', _addClassToFindTask);
+        btnSaveTask.addEventListener('click', saveTask);
   
       }
 
