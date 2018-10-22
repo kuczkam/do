@@ -1,6 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  font-family: canada-type-gibson,sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  background: url(../img/Do_pattern.svg);
+  background-size: 110px 110px;
+}
+header{
+  display: inline-block
+}
 .hide {
     display: none;
-  }
-  .visible {
-    display: block;
-  }
+}
+.visible {
+  display: block;
+}
+.logo{
+  height: 43px;
+  padding-top: 18px;
+  padding-right: 20px;
+  float: left;
+}
+.logo_name{
+  font-weight: 700;
+  font-style: normal;
+  font-size: 48pt;
+  color: #21D39B; 
+}
+p.logo_name span{
+  color: #6C00BC;
+}
+.js__task-add{
+  background-image: url(../img/Do_icon_add_active.svg);
+  background-repeat:no-repeat;
+  width: 40px;
+  height: 40px;
+}
+.js__task-edit{
+  background-image: url(../img/Do_icon_edit.svg);
+  background-repeat:no-repeat;
+  width: 40px;
+  height: 40px;
+}
+.js__task-check{
+  background-image: url(../img/Do_icon_check.svg);
+  background-repeat:no-repeat;
+  width: 40px;
+  height: 40px;
+}
+#js__task-remove{
+  background-image: url(../img/Do_icon_delete.svg);
+  background-repeat:no-repeat;
+  width: 40px;
+  height: 40px;
+}
+.container{
+  background-color: #ffffff;
+  margin: 0 100px 0 100px;
+  padding-top: 100px;
+}
+.claim{
+  font-size: 14pt;
+  font-weight: 300;
+  color: #BFBFBF;
+}

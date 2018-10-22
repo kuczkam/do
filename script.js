@@ -1,18 +1,18 @@
 let tasks = (() => {
     'use strict';
   
-    const arrTasks = [];
-    const input = document.getElementById('js__task-input');
-    const list = document.getElementById('js__tasks');
-    const button = document.getElementById('js__task-add');
-    const date = document.getElementById('js__task-date');
-    const btnEdittask = document.querySelector('.js__task-edit');
-    const btnRemove = document.getElementById('js__task-remove');
-    const btnAddTask = document.querySelector('.js__task-add');
-    const btnSaveTask = document.querySelector('.js__task-save');
-    const divAddTask = document.getElementById('js__task-add_div');
-    const divEditTask = document.getElementById('js__task-edit_div');
-    const editInput = document.getElementById('js__mytask');
+    const arrTasks      = [];
+    const input         = document.getElementById('js__task-input');
+    const list          = document.getElementById('js__tasks');
+    const button        = document.getElementById('js__task-add');
+    const date          = document.getElementById('js__task-date');
+    const btnRemove     = document.getElementById('js__task-remove');
+    const divAddTask    = document.getElementById('js__task-add_div');
+    const divEditTask   = document.getElementById('js__task-edit_div');
+    const editInput     = document.getElementById('js__mytask');
+    const btnEdittask   = document.querySelector('.js__task-edit');
+    const btnAddTask    = document.querySelector('.js__task-add');
+    const btnSaveTask   = document.querySelector('.js__task-save');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -62,7 +62,6 @@ let tasks = (() => {
 
         li.innerHTML = newValue;
         arrTasks[__taskIndex()] = newValue;
-        console.log(arrTasks);
     }
 
     const deleteTask = (index) => {
