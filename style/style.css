@@ -12,7 +12,7 @@ body {
   background-size: 110px 110px;
 }
 header{
-  display: inline-block
+  display: inline-block;
 }
 .hide {
     display: none;
@@ -61,6 +61,7 @@ p.logo_name span{
 }
 .container{
   background-color: #ffffff;
+  box-shadow: 5px 0 17px -6px #706F6F, -5px 0 15px -5px #706F6F;
   margin: 0 100px 0 100px;
   padding-top: 100px;
 }
@@ -68,4 +69,29 @@ p.logo_name span{
   font-size: 14pt;
   font-weight: 300;
   color: #BFBFBF;
+  width: 464px;
+  padding-left: 100px;
+}
+.main{
+  padding: 100px;
+}
+.header__div-logo{
+  padding-left: 20px;
+}
+button{
+  cursor: pointer;
+}
+#js__tasks{
+  list-style-type: none;
+}
+#task-options {
+  padding-top: 100px;
+}
+.todo-element{
+  font-size: 24pt;
+  font-weight: 300px;
+  color: #000000;
+}
+.task-date{
+  font-size: 14pt;
 }

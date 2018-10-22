@@ -35,6 +35,7 @@ let tasks = (() => {
         element.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
+        taskDate.setAttribute('class', 'task-date');
         element.appendChild(taskDate);
         list.appendChild(element);
     }
