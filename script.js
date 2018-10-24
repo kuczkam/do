@@ -92,6 +92,7 @@ let tasks = (() => {
         btnAddTask.addEventListener('click', () => {
             divAddTask.classList.remove('hide');
             divAddTask.classList.add('visible');
+            getFocus();
         });
         btnEdittask.addEventListener('click', () => {
           divEditTask.classList.remove('hide');
@@ -109,8 +110,12 @@ let tasks = (() => {
         list.addEventListener('click', _addClassToFindTask);
         btnSaveTask.addEventListener('click', saveTask);
   
-      }
-
+    }
+    const getFocus = () => {
+        if (divAddTask.classList.contains('visible')) {
+            input.focus();
+        }
+    } 
     return {
         bindEvents: bindEvents,
         addTask: addTask,
