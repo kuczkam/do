@@ -4,9 +4,6 @@ html, body {
   border: 0;
 }
 body {
-  font-family: canada-type-gibson,sans-serif;
-  font-weight: 300;
-  font-style: normal;
   background: url(../img/Do_pattern.svg);
   background-size: 110px 110px;
 }
@@ -30,6 +27,7 @@ header{
   float: left;
 }
 .logo_name{
+  font-family: canada-type-gibson,sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 48pt;
@@ -68,10 +66,12 @@ p.logo_name span{
   box-shadow: 5px 0 17px -6px #706F6F, -5px 0 15px -5px #706F6F;
   margin: 0 0 0 15%;
   width: 70%;
+  height: 100vh;
   padding-top: 100px;
   overflow: auto;
 }
 .claim{
+  font-family: canada-type-gibson,sans-serif;
   font-size: 14pt;
   font-weight: 300;
   color: #BFBFBF;
@@ -91,16 +91,20 @@ button{
 }
 #js__tasks{
   list-style-type: none;
+  padding-left: 0;
 }
 #task-options {
   padding-top: 100px;
 }
 .todo-element{
+  font-family: canada-type-gibson,sans-serif;
   font-size: 24pt;
-  font-weight: 300px;
+  font-weight: 300;
   color: #000000;
 }
 .task-date{
+  font-family: canada-type-gibson,sans-serif;
+  font-weight: 300;
   font-size: 14pt;
 }
 .btn{
@@ -120,12 +124,20 @@ aside{
   padding: 0 0 0 20px;
 }
 .task p{
+  font-family: canada-type-gibson,sans-serif;
   color: #ffffff;
   font-weight: 700;
   font-size: 24pt;
   margin-bottom: 0px;
 }
+.date p{
+  font-family: canada-type-gibson,sans-serif;
+  color: #21D39B;
+  font-weight: 700;
+  font-size: 24pt;
+}
 #js__task-input {
+  font-family: canada-type-gibson,sans-serif;
   height: 60px;
   width: 100%;
   background: transparent;
