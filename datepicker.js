@@ -1,6 +1,7 @@
 let datepicker = (() => {
     'use strict'
-    const month = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    const arr_month = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    const arr_days = ["M","T","W","T","F","S","S"];
     const tbody = document.getElementById('js__days');
     const frag = document.createDocumentFragment();
     let d = new Date();
@@ -8,7 +9,7 @@ let datepicker = (() => {
     let y = d.getFullYear()
     
     const caledar = () => {
-        let short_name = month[m];
+        let short_name = arr_month[m];
         let days = __getDayOfTheMonth(m, y);
         
         // for (let i = 1; i <= days; i++) {
