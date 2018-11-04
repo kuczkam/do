@@ -42,28 +42,22 @@
         </div>
         <div class="date">
           <p>Deadline.</p>
-          <input id="js__task-date" type="date">
+          <p id="js__task-date"></p>
+          <div id="datepicker">
+            <div class="cal-navi">
+              <button id="js__prev">prev</button>
+              <p id="js__month-year"></p>
+              <button id="js__next">next</button>
+            </div>
+            <table id="table_calendar">
+              <thead id="js__day-of-week"></thead>
+              <tbody id="js__days"></tbody>
+            </table>
+          </div>
         </div>
         <button id="js__task-add">add task to list</button>
       </div>
     </aside>
-  </div>
-  <div id="datepicker">
-    <table>
-      <thead>
-        <tr>
-          <th>M</th>
-          <th>T</th>
-          <th>W</th>
-          <th>T</th>
-          <th>F</th>
-          <th>S</th>
-          <th>S</th>
-        </tr>
-      </thead>
-      <tbody id="js__days">
-      </tbody>
-    </table>
   </div>
 <script src="script.js"></script>
 <script src="datepicker.js"></script>

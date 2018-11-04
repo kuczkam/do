@@ -31,7 +31,7 @@ let tasks = (() => {
         const element = document.createElement('li');
         const taskDate = document.createElement('div');
   
-        taskDate.innerText = date.value
+        taskDate.innerText = date.innerText;
         element.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
