@@ -7,7 +7,10 @@ let datepicker = (() => {
     const p_name        = document.getElementById('js__month-year');
     const prev          = document.getElementById('js__prev');
     const next          = document.getElementById('js__next');
-    const date          = document.getElementById('js__task-date'); //tu przekazać datę
+    const next_year     = document.getElementById('js__next-year');
+    const prev_year     = document.getElementById('js__prev-year');
+    const date          = document.getElementById('js__task-date');
+    const frag          = document.createDocumentFragment();
     let d = new Date();
     let m = d.getMonth();
     let y = d.getFullYear();
@@ -34,14 +37,25 @@ let datepicker = (() => {
         }
     }
 
+    const __nextYear = () => {
+            y = y+1;
+            __caledar(m);
+    }
+
+    const __prevYear = () => {
+        y = y-1;
+        __caledar(m);
+}
+
     const __daysOfTheWeek = () => {
         const tr = document.createElement("TR");
         thead.appendChild(tr);
         for ( let i = 0; i < 7; i++ ) {
             const td = document.createElement("TD");
             td.innerHTML = arr_days[i];
-            tr.appendChild(td);
+            frag.appendChild(td);
         }
+        tr.appendChild(frag);
     }
 
     const __caledar = (month) => {
@@ -93,6 +107,8 @@ let datepicker = (() => {
         }
         prev.addEventListener('click', __prev);
         next.addEventListener('click', __next);
+        next_year.addEventListener('click', __nextYear);
+        prev_year.addEventListener('click', __prevYear);
     }
 
     const bindEvents = (month) => {
