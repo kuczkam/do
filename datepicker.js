@@ -31,7 +31,7 @@ let datepicker = (() => {
     }
 
     const __next = () => {
-        if ( m < 12 ) {
+        if ( m < 11 ) {
             m = m+1;
             __caledar(m);
         }
