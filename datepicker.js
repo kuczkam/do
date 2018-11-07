@@ -1,6 +1,6 @@
 let datepicker = (() => {
     'use strict'
-    const arr_month     = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    const arr_month     = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const arr_days      = ["M","T","W","T","F","S","S"];
     const thead         = document.getElementById('js__day-of-week');
     const tbody         = document.getElementById('js__days');
@@ -53,6 +53,7 @@ let datepicker = (() => {
         for ( let i = 0; i < 7; i++ ) {
             const td = document.createElement("TD");
             td.innerHTML = arr_days[i];
+            td.setAttribute('class', 'day-of-week')
             frag.appendChild(td);
         }
         tr.appendChild(frag);
@@ -81,6 +82,7 @@ let datepicker = (() => {
                     const td_rw = document.createElement("TD");
                     const btn = document.createElement("BUTTON");
 
+                    btn.setAttribute('class', 'day-of-month');
                     tr_w.appendChild(td_rw);
                     btn.innerHTML = dayCount;
                     btn.setAttribute('id', 'day-' + dayCount );
