@@ -39,30 +39,12 @@ let datepicker = (() => {
         __caledar(m);
     }
 
-    const __removeDuplicate = () => {
-        const thirty = document.querySelectorAll('#day-30');
-        const thirty_one = document.querySelectorAll('#day-31');
-        const twenty_eight = document.querySelectorAll('#day-28');
-        const twenty_nine = document.querySelectorAll('#day-29');
+    const __removeDuplicate = (day) => {
+        const last = document.querySelectorAll(`#day-${day}`);
         if(prev || next || next_year || prev_year) {
-            if (thirty.length === 2) {
-                [...thirty].find((thirty, key) => key === 1).remove();   
+            if (last.length === 2) {
+                [...last].find((last, key) => key === 1).remove();   
             }
-        }
-        if(prev || next || next_year || prev_year) {
-            if (thirty_one.length === 2) {
-                [...thirty_one].find((thirty_one, key) => key === 1).remove();   
-           }
-        }
-        if(prev || next || next_year || prev_year) {
-            if (twenty_eight.length === 2) {
-                [...twenty_eight].find((twenty_eight, key) => key === 1).remove();   
-           }
-        }
-        if(prev || next || next_year || prev_year) {
-            if (twenty_nine.length === 2) {
-                [...twenty_nine].find((twenty_nine, key) => key === 1).remove();   
-           }
         }
     }
 
@@ -96,7 +78,7 @@ let datepicker = (() => {
             tbody.appendChild(tr_w);
 
             for ( let rw = 0; rw < 7; rw++ ) {
-                if ( offSet === 1 ) {
+                if ( offSet === 1 || offSet === 0) {
                     const td_rw = document.createElement("TD");
                     const btn = document.createElement("BUTTON");
                     btn.setAttribute('class', 'day-of-month');
@@ -113,27 +95,6 @@ let datepicker = (() => {
                     });
                     td_rw.appendChild(btn);
 
-                    if ( dayCount == l_days ) {
-                        break;
-                    }
-                    dayCount++;
-                } else if ( offSet === 0 ) {
-                    const td_rw = document.createElement("TD");
-                    const btn = document.createElement("BUTTON");
-
-                    btn.setAttribute('class', 'day-of-month');
-                    tr_w.appendChild(td_rw);
-                    btn.innerHTML = dayCount;
-                    btn.setAttribute('id', 'day-' + dayCount );
-                    btn.addEventListener('click', (e) => {
-                        const b = document.getElementById(e.target.id).innerText;
-                        if ( month == null ) {
-                            date.innerHTML = b + " " + arr_month[m] + " " + y;
-                        } else {
-                            date.innerHTML = b + " " + short_name + " " + y;
-                        }
-                    });
-                    td_rw.appendChild(btn);
                     if ( dayCount == l_days ) {
                         break;
                     }
@@ -149,7 +110,7 @@ let datepicker = (() => {
         next.addEventListener('click', __next);
         next_year.addEventListener('click', __nextYear);
         prev_year.addEventListener('click', __prevYear);
-        __removeDuplicate();
+        __removeDuplicate(l_days);
     }
 
     const bindEvents = (month) => {
