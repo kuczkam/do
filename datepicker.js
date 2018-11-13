@@ -52,10 +52,11 @@ let datepicker = (() => {
     }
 
     const __caledar = (month) => {
+        const test = document.getElementById('day-31');
         let short_name = arr_month[month];
-        let f_days = new Date(y, m, 1);
-        let l_days = new Date(y, m, 0);
-        let offSet = f_days.getDay();
+        let f_days = new Date(y, m, 1).getDay();
+        let l_days = new Date(y, m+1, 0).getDate();
+        let offSet = f_days;
         let dayCount = 1;
 
         if ( month == null ) {
@@ -63,14 +64,37 @@ let datepicker = (() => {
         } else {
             p_name.innerHTML = short_name + " " + y;
         }
-
         tbody.innerHTML = '';
-        for ( let j = 0; j < 5; j++ ) {//do poprawy bo musimy zorbić IFa by zmieniał wartość w zależności od offseta
+        for ( let j = 0; j < 6; j++ ) {
             const tr_w = document.createElement("TR");
             tbody.appendChild(tr_w);
             
             for ( let rw = 0; rw < 7; rw++ ) {
-                if ( offSet === 1 ) {//do poprawy bo nie pobiera niektórych miesięcy
+                if ( offSet === 1 ) {
+                    const td_rw = document.createElement("TD");
+                    const btn = document.createElement("BUTTON");
+                    if (test) {
+                        console.log('test');
+                    }
+                    btn.setAttribute('class', 'day-of-month');
+                    tr_w.appendChild(td_rw);
+                    btn.innerHTML = dayCount;
+                    btn.setAttribute('id', 'day-' + dayCount );
+                    btn.addEventListener('click', (e) => {
+                        const b = document.getElementById(e.target.id).innerText;
+                        if ( month == null ) {
+                            date.innerHTML = b + " " + arr_month[m] + " " + y;
+                        } else {
+                            date.innerHTML = b + " " + short_name + " " + y;
+                        }
+                    });
+                    td_rw.appendChild(btn);
+
+                    if ( dayCount == l_days ) {
+                        break;
+                    }
+                    dayCount++;
+                } else if ( offSet === 0 ) {
                     const td_rw = document.createElement("TD");
                     const btn = document.createElement("BUTTON");
 
@@ -87,8 +111,7 @@ let datepicker = (() => {
                         }
                     });
                     td_rw.appendChild(btn);
-
-                    if ( dayCount == l_days.getDate() ) {
+                    if ( dayCount == l_days ) {
                         break;
                     }
                     dayCount++;
