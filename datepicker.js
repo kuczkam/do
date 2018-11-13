@@ -37,7 +37,34 @@ let datepicker = (() => {
     const __prevYear = () => {
         y = y-1;
         __caledar(m);
-}
+    }
+
+    const __removeDuplicate = () => {
+        const thirty = document.querySelectorAll('#day-30');
+        const thirty_one = document.querySelectorAll('#day-31');
+        const twenty_eight = document.querySelectorAll('#day-28');
+        const twenty_nine = document.querySelectorAll('#day-29');
+        if(prev || next || next_year || prev_year) {
+            if (thirty.length === 2) {
+                [...thirty].find((thirty, key) => key === 1).remove();   
+            }
+        }
+        if(prev || next || next_year || prev_year) {
+            if (thirty_one.length === 2) {
+                [...thirty_one].find((thirty_one, key) => key === 1).remove();   
+           }
+        }
+        if(prev || next || next_year || prev_year) {
+            if (twenty_eight.length === 2) {
+                [...twenty_eight].find((twenty_eight, key) => key === 1).remove();   
+           }
+        }
+        if(prev || next || next_year || prev_year) {
+            if (twenty_nine.length === 2) {
+                [...twenty_nine].find((twenty_nine, key) => key === 1).remove();   
+           }
+        }
+    }
 
     const __daysOfTheWeek = () => {
         const tr = document.createElement("TR");
@@ -52,7 +79,6 @@ let datepicker = (() => {
     }
 
     const __caledar = (month) => {
-        const test = document.getElementById('day-31');
         let short_name = arr_month[month];
         let f_days = new Date(y, m, 1).getDay();
         let l_days = new Date(y, m+1, 0).getDate();
@@ -68,14 +94,11 @@ let datepicker = (() => {
         for ( let j = 0; j < 6; j++ ) {
             const tr_w = document.createElement("TR");
             tbody.appendChild(tr_w);
-            
+
             for ( let rw = 0; rw < 7; rw++ ) {
                 if ( offSet === 1 ) {
                     const td_rw = document.createElement("TD");
                     const btn = document.createElement("BUTTON");
-                    if (test) {
-                        console.log('test');
-                    }
                     btn.setAttribute('class', 'day-of-month');
                     tr_w.appendChild(td_rw);
                     btn.innerHTML = dayCount;
@@ -126,6 +149,7 @@ let datepicker = (() => {
         next.addEventListener('click', __next);
         next_year.addEventListener('click', __nextYear);
         prev_year.addEventListener('click', __prevYear);
+        __removeDuplicate();
     }
 
     const bindEvents = (month) => {
