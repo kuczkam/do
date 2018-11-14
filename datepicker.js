@@ -7,8 +7,8 @@ let datepicker = (() => {
     const p_name        = document.getElementById('js__month-year');
     const prev          = document.getElementById('js__prev');
     const next          = document.getElementById('js__next');
-    const next_year     = document.getElementById('js__next-year');
     const prev_year     = document.getElementById('js__prev-year');
+    const next_year     = document.getElementById('js__next-year');
     const date          = document.getElementById('js__task-date');
     const frag          = document.createDocumentFragment();
     let d = new Date();
@@ -19,7 +19,6 @@ let datepicker = (() => {
         if ( m > 0 ) {
             m = m-1;
             __caledar(m);
-            __test();
         }
     }
 
@@ -27,7 +26,6 @@ let datepicker = (() => {
         if ( m < 11 ) {
             m = m+1;
             __caledar(m);
-            __test();
         }
     }
 
@@ -40,17 +38,7 @@ let datepicker = (() => {
         y = y-1;
         __caledar(m);
     }
-
-    const __test = () => {
-        if ( m == 11 ) {
-            next.id = "js__next-year";
-            if ( next_year ) {
-                next_year.addEventListener('click', __nextYear);
-            }
-        } else if ( m < 11 ) {
-            next.id = 'js__next';
-        }
-    }
+      
 
     const __removeDuplicate = (day) => {
         const last = document.querySelectorAll(`#day-${day}`);
@@ -119,14 +107,25 @@ let datepicker = (() => {
                 }
             }
         }
+
+        if ( month < 1 ) {
+            prev.classList.add('hide');
+            prev_year.classList.remove('hide');
+        } else {
+            prev.classList.remove('hide');
+            prev_year.classList.add('hide');
+        }
+        if ( month == 11 ) {
+            next.classList.add('hide');
+            next_year.classList.remove('hide');
+        } else {
+            next.classList.remove('hide');
+            next_year.classList.add('hide');            
+        }
         prev.addEventListener('click', __prev);
         next.addEventListener('click', __next);
-        // if ( next_year ) {
-        //     next_year.addEventListener('click', __nextYear);
-        // }
-        if ( prev_year ) {
-            prev_year.addEventListener('click', __prevYear);
-        }
+        next_year.addEventListener('click', __nextYear);
+        prev_year.addEventListener('click', __prevYear);
         __removeDuplicate(l_days);
     }
 
