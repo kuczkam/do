@@ -15,7 +15,7 @@ header{
   width: 100%;
 }
 .hide {
-    display: none;
+    display: none !important;
 }
 .visible {
   display: block;
@@ -204,4 +204,15 @@ aside{
 }
 .day-of-month {
   background: transparent;
+  width: 38px;
+}
+#js__task-add {
+  background: #FF4954;
+  padding: 10px;
+  width: 72px;
+}
+.day-of-month:hover{
+  font-family: canada-type-gibson,sans-serif;
+  color: #FF4954;
+  font-weight: 700; 
 }

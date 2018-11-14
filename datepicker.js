@@ -19,6 +19,7 @@ let datepicker = (() => {
         if ( m > 0 ) {
             m = m-1;
             __caledar(m);
+            __test();
         }
     }
 
@@ -26,6 +27,7 @@ let datepicker = (() => {
         if ( m < 11 ) {
             m = m+1;
             __caledar(m);
+            __test();
         }
     }
 
@@ -37,6 +39,17 @@ let datepicker = (() => {
     const __prevYear = () => {
         y = y-1;
         __caledar(m);
+    }
+
+    const __test = () => {
+        if ( m == 11 ) {
+            next.id = "js__next-year";
+            if ( next_year ) {
+                next_year.addEventListener('click', __nextYear);
+            }
+        } else if ( m < 11 ) {
+            next.id = 'js__next';
+        }
     }
 
     const __removeDuplicate = (day) => {
@@ -108,8 +121,12 @@ let datepicker = (() => {
         }
         prev.addEventListener('click', __prev);
         next.addEventListener('click', __next);
-        next_year.addEventListener('click', __nextYear);
-        prev_year.addEventListener('click', __prevYear);
+        // if ( next_year ) {
+        //     next_year.addEventListener('click', __nextYear);
+        // }
+        if ( prev_year ) {
+            prev_year.addEventListener('click', __prevYear);
+        }
         __removeDuplicate(l_days);
     }
 
