@@ -102,6 +102,13 @@ button{
   font-weight: 300;
   color: #000000;
 }
+.todo-element:hover{
+  color: #FF4954;
+  cursor: pointer;
+}
+.js__to-edit{
+  color: #FF4954;
+}
 .task-date{
   font-family: canada-type-gibson,sans-serif;
   font-weight: 300;
@@ -136,6 +143,7 @@ aside{
   font-weight: 700;
   font-size: 24pt;
   margin-bottom: 0;
+  padding-left: 20px;
 }
 #js__task-date{
   font-family: canada-type-gibson,sans-serif;
@@ -165,36 +173,36 @@ aside{
   margin: 0;
 }
 #js__prev, #js__next{
-  color: #21D39B;
+  color: #DCDCDC;
   cursor: pointer;
-  font-size: 10pt;
+  font-size: 18pt;
 }
 #js__prev-year, #js__next-year{
   color: #FF4954;
   cursor: pointer;
-  font-size: 10pt;
+  font-size: 18pt;
 }
 .alignleft {
   float: left;
   text-align:left;
-  width: 6.66666%;
+  width: 18.66666%;
 }
 .aligncenter {
   float: left;
   text-align:center;
-  width:33.33333%;
+  width: 21.66666%;
 }
 .alignright {
   float: left;
   text-align:right;
-  width: 6.66666%;
+  width: 20.66666%;
 }
 #table_calendar {
-  padding: 10px 0 0 0;
-  width: 260px;
+  padding: 10px 0px 0px 0px;
+  width: 390px;
 }
 .cal-navi {
-  padding: 40px 0 0 0;
+  padding: 50px 0 0 20px;
 }
 .day-of-week{
   font-family: canada-type-gibson,sans-serif;
@@ -212,6 +220,14 @@ aside{
   width: 72px;
 }
 .day-of-month:hover{
+  font-family: canada-type-gibson,sans-serif;
+  color: #FF4954;
+  font-weight: 700; 
+}
+td {
+  text-align: center;
+}
+.selected{
   font-family: canada-type-gibson,sans-serif;
   color: #FF4954;
   font-weight: 700; 

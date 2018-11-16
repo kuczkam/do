@@ -1,4 +1,4 @@
-let datepicker = (() => {
+const datepicker = (() => {
     'use strict'
     const arr_month     = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const arr_days      = ["M","T","W","T","F","S","S"];
@@ -87,11 +87,11 @@ let datepicker = (() => {
                     btn.innerHTML = dayCount;
                     btn.setAttribute('id', 'day-' + dayCount );
                     btn.addEventListener('click', (e) => {
-                        const b = document.getElementById(e.target.id).innerText;
+                        const b = document.getElementById(e.target.id);
                         if ( month == null ) {
-                            date.innerHTML = b + " " + arr_month[m] + " " + y;
+                            date.innerHTML = b.innerText + " " + arr_month[m] + " " + y;
                         } else {
-                            date.innerHTML = b + " " + short_name + " " + y;
+                            date.innerHTML = b.innerText + " " + short_name + " " + y;
                         }
                     });
                     td_rw.appendChild(btn);
@@ -129,9 +129,24 @@ let datepicker = (() => {
         __removeDuplicate(l_days);
     }
 
+    const __active = () => {
+        const table = document.getElementById("js__days");
+        table.addEventListener('click', (e) => {
+            if (e.target.classList.contains('day-of-month')) {
+                const activeBtn = document.querySelector('button.selected');
+         
+                e.target.classList.remove('selected')
+                if (activeBtn !== e.target) {
+                    e.target.classList.add('selected')
+                }
+            }
+         });
+    }
+
     const bindEvents = (month) => {
         __daysOfTheWeek();
         __caledar(month);
+        __active();
     }
 
     return {
