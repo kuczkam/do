@@ -93,6 +93,7 @@ const datepicker = (() => {
                         } else {
                             date.innerHTML = b.innerText + " " + short_name + " " + y;
                         }
+                        __selected(e);
                     });
                     td_rw.appendChild(btn);
 
@@ -129,24 +130,19 @@ const datepicker = (() => {
         __removeDuplicate(l_days);
     }
 
-    const __active = () => {
-        const table = document.getElementById("js__days");
-        table.addEventListener('click', (e) => {
-            if (e.target.classList.contains('day-of-month')) {
-                const activeBtn = document.querySelector('button.selected');
-         
-                e.target.classList.remove('selected')
-                if (activeBtn !== e.target) {
-                    e.target.classList.add('selected')
-                }
-            }
-         });
+    const __selected = (e) => {
+        const btn = document.querySelectorAll('.day-of-month');
+        [].forEach.call(btn, (el) => {
+            el.classList.remove('selected');
+        });
+        e.target.classList.add('selected');
+        
     }
 
     const bindEvents = (month) => {
         __daysOfTheWeek();
         __caledar(month);
-        __active();
+    //    __selected();
     }
 
     return {
