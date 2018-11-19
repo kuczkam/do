@@ -142,7 +142,6 @@ const datepicker = (() => {
     const bindEvents = (month) => {
         __daysOfTheWeek();
         __caledar(month);
-    //    __selected();
     }
 
     return {

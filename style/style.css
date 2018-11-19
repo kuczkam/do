@@ -215,9 +215,10 @@ aside{
   width: 38px;
 }
 #js__task-add {
-  background: #FF4954;
-  padding: 10px;
-  width: 72px;
+  background-image: url(../img/Do_icon_check_active.svg);
+  background-repeat:no-repeat;
+  width: 40px;
+  height: 40px;
 }
 .day-of-month:hover{
   font-family: canada-type-gibson,sans-serif;
@@ -231,4 +232,15 @@ td {
   font-family: canada-type-gibson,sans-serif;
   color: #FF4954;
   font-weight: 700; 
+}
+#js__task-add_div{
+  transition-property: visibility, opacity;
+  transition-duration: 0s, 2s;
+}
+#js__task-add_div.hidden{
+  opacity: 0;
+  visibility: hidden;
+  transition-property: visibility, opacity;
+  transition-duration: 0s, 2s;
+  transition-delay: 0s, 2s;
 }
