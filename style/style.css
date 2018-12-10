@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   border: 0;
+  height: 100%;
 }
 body {
   background: url(../img/Do_pattern.svg);
@@ -10,7 +11,7 @@ body {
 input[type="text"], input[type="date"], textarea, select, button { 
   outline: none;
 }
-header{
+.header{
   display: inline-block;
   width: 100%;
 }
@@ -66,9 +67,8 @@ p.logo_name span{
   box-shadow: 5px 0 17px -6px #706F6F, -5px 0 15px -5px #706F6F;
   margin: 0 0 0 15%;
   width: 70%;
-  height: 100vh;
+  min-height: 100%;
   padding-top: 100px;
-  overflow: auto;
 }
 .claim{
   font-family: canada-type-gibson,sans-serif;
@@ -118,7 +118,7 @@ button{
   margin: 0 40px 0 0px;
   background-color: transparent;
 }
-aside{
+.aside{
   float: right;
   width: 42%;
   height: 250px;

@@ -9,29 +9,27 @@
   </head>
   <body>
     <div class="container">
-    <header>
-      <div class="header__div-logo">
-        <img src="img/Do_logo.svg" class="logo">
-        <p class="logo_name">Do<span>.</span></p>
+      <div class="header">
+        <div class="header__div-logo">
+          <img src="img/Do_logo.svg" class="logo">
+          <p class="logo_name">Do<span>.</span></p>
+        </div>
+        <div class="claim">
+          <p>Make a simple to do list and pin date, priority and done labels
+            to organise your work and keep in mind deadlines
+          </p>
+        </div>
       </div>
-      <div class="claim">
-        <p>Make a simple to do list and pin date, priority and done labels
-          to organise your work and keep in mind deadlines
-        </p>
-      </div>
-    </header>
-    <section class="main">
-      <ul id="js__tasks">
-      </ul>
-
+    <div class="main">
+      <ul id="js__tasks"></ul>
       <div id="task-options">
         <button class="js__task-add btn"></button>
         <button class="js__task-edit btn"></button>
         <button id="js__task-remove" class="btn"></button>
         <button class="js__task-check"></button>
       </div>
-    </section>
-    <aside>
+    </div>
+    <div class="aside">
       <div id="js__task-add_div" class="hidden">
         <div class="task">
           <p>Do.</p>
@@ -57,7 +55,7 @@
         <button id="js__task-add"></button>
         <button class="js__task-save">save</button>
       </div>
-    </aside>
+    </div>
   </div>
   <!--przerobić to na divy zamiast headera,asida i section-->
 <script src="script.js"></script>
