@@ -9,7 +9,6 @@ let tasks = (() => {
     const btnRemove     = document.getElementById('js__task-remove');
     const divAddTask    = document.getElementById('js__task-add_div');
     const divEditTask   = document.getElementById('js__task-edit_div');
-    const editInput     = document.getElementById('js__mytask');
     const btnEdittask   = document.querySelector('.js__task-edit');
     const btnAddTask    = document.querySelector('.js__task-add');
     const btnSaveTask   = document.querySelector('.js__task-save');
@@ -30,6 +29,10 @@ let tasks = (() => {
     const createTaskElement = (value) => {
         const element = document.createElement('li');
         const taskDate = document.createElement('div');
+        const [day, month, year] = date.innerText.split(' '); //użyć tego do pobierania danych do datapickera w edycji
+        console.log(day);
+        console.log(month);
+        console.log(year);
   
         taskDate.innerText = date.innerText;
         element.innerText = value;
@@ -53,12 +56,12 @@ let tasks = (() => {
         const elementId = li.getAttribute('id');
         const val = document.getElementById(elementId).innerText;
 
-        editInput.value = val;
+        input.value = val;
         
     }
 
     const saveTask = () => {
-        const newValue = editInput.value;
+        const newValue = input.value;
         const li = document.querySelector('.js__to-edit');
 
         li.innerHTML = newValue;
@@ -92,10 +95,6 @@ let tasks = (() => {
         btnAddTask.addEventListener('click', () => {
             divAddTask.className = '';
             getFocus();
-        });
-        btnEdittask.addEventListener('click', () => {
-          divEditTask.classList.remove('hide');
-          divEditTask.classList.add('visible');
         });
         input.addEventListener('keyup', (e) => {
           e.preventDefault();

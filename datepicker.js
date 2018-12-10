@@ -109,14 +109,14 @@ const datepicker = (() => {
             }
         }
 
-        if ( month < 1 ) {
+        if ( m <= 1 ) {
             prev.classList.add('hide');
             prev_year.classList.remove('hide');
         } else {
             prev.classList.remove('hide');
             prev_year.classList.add('hide');
         }
-        if ( month == 11 ) {
+        if ( m >= 11 ) {
             next.classList.add('hide');
             next_year.classList.remove('hide');
         } else {
@@ -139,9 +139,9 @@ const datepicker = (() => {
         
     }
 
-    const bindEvents = (month) => {
+    const bindEvents = () => {
         __daysOfTheWeek();
-        __caledar(month);
+        __caledar();
     }
 
     return {
