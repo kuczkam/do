@@ -29,16 +29,15 @@ let tasks = (() => {
     const createTaskElement = (value) => {
         const element = document.createElement('li');
         const taskDate = document.createElement('div');
-        const [day, month, year] = date.innerText.split(' '); //użyć tego do pobierania danych do datapickera w edycji
-        console.log(day);
-        console.log(month);
-        console.log(year);
+        const taskP = document.createElement('p');
   
         taskDate.innerText = date.innerText;
-        element.innerText = value;
+        taskP.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
         taskDate.setAttribute('class', 'task-date');
+        taskP.setAttribute('class', 'task-text');
+        element.appendChild(taskP);
         element.appendChild(taskDate);
         list.appendChild(element);
     }
@@ -53,10 +52,21 @@ let tasks = (() => {
 
     const __editTask = () => {
         const li = document.querySelector('.js__to-edit');
+        const inputVal = document.getElementsByClassName('thVal');
         const elementId = li.getAttribute('id');
-        const val = document.getElementById(elementId).innerText;
+        const valElem = document.getElementById(elementId);
+        const val = valElem.innerText;
 
-        input.value = val;
+    //    input.value = val;
+        valElem.innerHTML = '<input class="thVal" type="text" value="' + val + '" />';
+
+        inputVal.addEventListener('keyup', (e) => {
+            if ( e.keyCode === 13 ) {
+                const newValue = inputVal.value;
+                li.innerHTML = newValue;
+                arrTasks[__taskIndex()] = newValue;
+            }
+        });
         
     }
 
@@ -79,7 +89,7 @@ let tasks = (() => {
     }
 
     const _addClassToFindTask = (e) => {
-        if (e.target.tagName === 'LI') {
+        if (e.target.className === 'task-text') {
             const c = document.querySelector('#js__tasks li.js__to-edit');
             const item = e.target.closest('LI');
             if ( c !== null) {
