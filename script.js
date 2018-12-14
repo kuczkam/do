@@ -28,16 +28,12 @@ let tasks = (() => {
 
     const createTaskElement = (value) => {
         const element = document.createElement('li');
-        const taskDate = document.createElement('div');
-        const taskP = document.createElement('p');
-  
+        const taskDate = document.createElement('div');  
         taskDate.innerText = date.innerText;
-        taskP.innerText = value;
+        element.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
         taskDate.setAttribute('class', 'task-date');
-        taskP.setAttribute('class', 'task-text');
-        element.appendChild(taskP);
         element.appendChild(taskDate);
         list.appendChild(element);
     }
@@ -52,21 +48,10 @@ let tasks = (() => {
 
     const __editTask = () => {
         const li = document.querySelector('.js__to-edit');
-        const inputVal = document.getElementsByClassName('thVal');
         const elementId = li.getAttribute('id');
-        const valElem = document.getElementById(elementId);
-        const val = valElem.innerText;
+        const val = document.getElementById(elementId).innerText;
 
-    //    input.value = val;
-        valElem.innerHTML = '<input class="thVal" type="text" value="' + val + '" />';
-
-        inputVal.addEventListener('keyup', (e) => {
-            if ( e.keyCode === 13 ) {
-                const newValue = inputVal.value;
-                li.innerHTML = newValue;
-                arrTasks[__taskIndex()] = newValue;
-            }
-        });
+        input.value = val;
         
     }
 
@@ -89,7 +74,7 @@ let tasks = (() => {
     }
 
     const _addClassToFindTask = (e) => {
-        if (e.target.className === 'task-text') {
+        if (e.target.tagName === 'LI') {
             const c = document.querySelector('#js__tasks li.js__to-edit');
             const item = e.target.closest('LI');
             if ( c !== null) {
@@ -103,8 +88,8 @@ let tasks = (() => {
 
     const bindEvents = () => {
         btnAddTask.addEventListener('click', () => {
-            divAddTask.className = '';
-            getFocus();
+            divAddTask.className = 'visible';
+            getFocus(divAddTask, input);
         });
         input.addEventListener('keyup', (e) => {
           e.preventDefault();
@@ -119,9 +104,9 @@ let tasks = (() => {
         btnSaveTask.addEventListener('click', saveTask);
   
     }
-    const getFocus = () => {
-        if (divAddTask.classList.contains('visible')) {
-            input.focus();
+    const getFocus = (a, b) => {
+        if (a.classList.contains('visible')) {
+            b.focus();
         }
     } 
     return {
