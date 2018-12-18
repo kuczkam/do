@@ -28,12 +28,15 @@ let tasks = (() => {
 
     const createTaskElement = (value) => {
         const element = document.createElement('li');
-        const taskDate = document.createElement('div');  
+        const taskDate = document.createElement('div');
+        const taskPara = document.createElement('p');  
         taskDate.innerText = date.innerText;
-        element.innerText = value;
+        taskPara.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
+        taskPara.setAttribute('id', __uniqueId());
         taskDate.setAttribute('class', 'task-date');
+        element.appendChild(taskPara);
         element.appendChild(taskDate);
         list.appendChild(element);
     }
@@ -44,23 +47,6 @@ let tasks = (() => {
         var index = nodes.indexOf(li);
 
         return index;
-    }
-
-    const __editTask = () => {
-        const li = document.querySelector('.js__to-edit');
-        const elementId = li.getAttribute('id');
-        const val = document.getElementById(elementId).innerText;
-
-        input.value = val;
-        
-    }
-
-    const saveTask = () => {
-        const newValue = input.value;
-        const li = document.querySelector('.js__to-edit');
-
-        li.innerHTML = newValue;
-        arrTasks[__taskIndex()] = newValue;
     }
 
     const deleteTask = (index) => {
@@ -74,9 +60,9 @@ let tasks = (() => {
     }
 
     const _addClassToFindTask = (e) => {
-        if (e.target.tagName === 'LI') {
-            const c = document.querySelector('#js__tasks li.js__to-edit');
-            const item = e.target.closest('LI');
+        if (e.target.tagName === 'P') {
+            const c = document.querySelector('#js__tasks li p.js__to-edit');
+            const item = e.target.closest('P');
             if ( c !== null) {
                 c.classList.remove('js__to-edit');
             }
@@ -97,13 +83,42 @@ let tasks = (() => {
             button.click();
           }
         });
-        btnEdittask.addEventListener('click', __editTask);
+        // btnEdittask.addEventListener('click', __editTask);
+        // btnSaveTask.addEventListener('click', saveTask);
+        list.addEventListener('click', _addClassToFindTask);
+        list.addEventListener('dblclick', (e) => {
+            const p = document.querySelector('.js__to-edit');
+            const currentEle = p.getAttribute('id');
+            const val = document.getElementById(currentEle).innerText;
+        //    const newValue = document.getElementsByClassName('js__val').value;
+            e.stopPropagation();
+            udpateTask(p, val);
+        });
         button.addEventListener('click', addTask);
         btnRemove.addEventListener('click', deleteTask);
-        list.addEventListener('click', _addClassToFindTask);
-        btnSaveTask.addEventListener('click', saveTask);
-  
     }
+
+    const udpateTask = (currentEle, newValue) => {
+        currentEle.innerHTML = '<input class="js__val" type="text" value="' + newValue + '" />';
+    }
+
+    // const __editTask = () => {
+    //     const li = document.querySelector('.js__to-edit');
+    //     const elementId = li.getAttribute('id');
+    //     const val = document.getElementById(elementId).innerText;
+
+    //     input.value = val;
+        
+    // }
+
+    // const saveTask = () => {
+    //     const newValue = input.value;
+    //     const li = document.querySelector('.js__to-edit');
+
+    //     li.innerHTML = newValue;
+    //     arrTasks[__taskIndex()] = newValue;
+    // }
+
     const getFocus = (a, b) => {
         if (a.classList.contains('visible')) {
             b.focus();
