@@ -6,12 +6,16 @@ let tasks = (() => {
     const list          = document.getElementById('js__tasks');
     const button        = document.getElementById('js__task-add');
     const date          = document.getElementById('js__task-date');
+    const modalDate     = document.getElementById('js__modal-date');
     const btnRemove     = document.getElementById('js__task-remove');
     const divAddTask    = document.getElementById('js__task-add_div');
     const divEditTask   = document.getElementById('js__task-edit_div');
+    const editInput     = document.getElementById('js__mytask');
     const btnEdittask   = document.querySelector('.js__task-edit');
     const btnAddTask    = document.querySelector('.js__task-add');
     const btnSaveTask   = document.querySelector('.js__task-save');
+    const btnCheckTask  = document.querySelector('.js__task-check');
+    const backdrop      = document.querySelector('.backdrop');
   
     const addTask = () => {
         if (input.value !== '') {
@@ -29,14 +33,14 @@ let tasks = (() => {
     const createTaskElement = (value) => {
         const element = document.createElement('li');
         const taskDate = document.createElement('div');
-        const taskPara = document.createElement('p');  
+        const p = document.createElement('p');
         taskDate.innerText = date.innerText;
-        taskPara.innerText = value;
+        p.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
-        taskPara.setAttribute('id', __uniqueId());
+        p.setAttribute('id', __uniqueId());
         taskDate.setAttribute('class', 'task-date');
-        element.appendChild(taskPara);
+        element.appendChild(p);
         element.appendChild(taskDate);
         list.appendChild(element);
     }
@@ -55,22 +59,24 @@ let tasks = (() => {
             if (todos.length > 0) {
                 [...todos].find((todo, key) => key === __taskIndex()).remove();
                 arrTasks.splice(__taskIndex(), 1);    
-            } 
+            }
+            __activeClassButton(); 
         }
     }
 
     const _addClassToFindTask = (e) => {
         if (e.target.tagName === 'P') {
-            const c = document.querySelector('#js__tasks li p.js__to-edit');
-            const item = e.target.closest('P');
-            if ( c !== null) {
+            const c = document.querySelector('#js__tasks li.js__to-edit');
+            const item = e.target.closest('LI');
+            if (c !== null) {
                 c.classList.remove('js__to-edit');
             }
             item.classList.add('js__to-edit');
+            __activeClassButton(e);
 
             return e.target.id;
         }
-    }
+}
 
     const bindEvents = () => {
         btnAddTask.addEventListener('click', () => {
@@ -83,47 +89,73 @@ let tasks = (() => {
             button.click();
           }
         });
-        // btnEdittask.addEventListener('click', __editTask);
-        // btnSaveTask.addEventListener('click', saveTask);
-        list.addEventListener('click', _addClassToFindTask);
-        list.addEventListener('dblclick', (e) => {
-            const p = document.querySelector('.js__to-edit');
-            const currentEle = p.getAttribute('id');
-            const val = document.getElementById(currentEle).innerText;
-        //    const newValue = document.getElementsByClassName('js__val').value;
-            e.stopPropagation();
-            udpateTask(p, val);
+        document.addEventListener('keyup', (e) => {
+            e.preventDefault();
+            if (e.keyCode === 27) {
+                backdrop.classList.add('hidden');
+                divEditTask.classList.add('hidden');                
+            }
         });
+        btnEdittask.addEventListener('click', __editTask);
+        btnSaveTask.addEventListener('click', saveTask);
+        list.addEventListener('click', _addClassToFindTask);
         button.addEventListener('click', addTask);
         btnRemove.addEventListener('click', deleteTask);
+        btnSaveTask.addEventListener('click', saveTask);
     }
 
-    const udpateTask = (currentEle, newValue) => {
-        currentEle.innerHTML = '<input class="js__val" type="text" value="' + newValue + '" />';
+
+    const __editTask = () => {
+        const p = document.querySelector('li.js__to-edit p');
+        const elementId = p.getAttribute('id');
+        const val = document.getElementById(elementId).innerText;
+        const date = document.querySelector('.task-date').innerText;
+        divEditTask.classList.remove('hidden');
+        divEditTask.classList.add('modal');
+        backdrop.classList.remove('hidden');
+
+        editInput.value = val;
+        modalDate.textContent = date;
+
+        getFocus(divEditTask, editInput);  
     }
 
-    // const __editTask = () => {
-    //     const li = document.querySelector('.js__to-edit');
-    //     const elementId = li.getAttribute('id');
-    //     const val = document.getElementById(elementId).innerText;
+    const saveTask = () => {
+        const newValue = editInput.value;
+        const li = document.querySelector('.js__to-edit');
 
-    //     input.value = val;
-        
-    // }
-
-    // const saveTask = () => {
-    //     const newValue = input.value;
-    //     const li = document.querySelector('.js__to-edit');
-
-    //     li.innerHTML = newValue;
-    //     arrTasks[__taskIndex()] = newValue;
-    // }
+        li.innerHTML = newValue;
+        arrTasks[__taskIndex()] = newValue;
+        divEditTask.classList.remove('modal');
+        divEditTask.classList.add('hidden');
+        closeModal();
+    }
 
     const getFocus = (a, b) => {
         if (a.classList.contains('visible')) {
             b.focus();
         }
-    } 
+    }
+    
+    const closeModal = () => {
+        if (backdrop) {
+            backdrop.classList.add('hidden');
+            divEditTask.classList.add('hidden');
+        }
+    }
+
+    const __activeClassButton = () => {
+        const selector = document.querySelector('#js__tasks li.js__to-edit');
+        const btn = document.querySelectorAll('.btn');
+        [].forEach.call(btn, (el) => {
+            if (selector !== null) {
+                el.classList.add('active');
+            } else {
+                el.classList.remove('active');
+            }
+        });
+    }
+    
     return {
         bindEvents: bindEvents,
         addTask: addTask,
