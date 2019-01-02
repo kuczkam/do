@@ -25,8 +25,14 @@
       <div id="task-options">
         <button class="js__task-add btn"></button>
         <button class="js__task-edit btn"></button>
-        <button id="js__task-remove" class="btn"></button>
+        <button id="js__task-remove" class="js__task-remove btn"></button>
         <button class="js__task-check"></button>
+      </div>
+      <div class="backdrop hidden"></div>
+      <div id="js__task-edit_div" class="hidden">
+        <input id="js__mytask" value="">
+        <p id="js__modal-date"></p>
+        <button class="js__task-save">save</button>
       </div>
     </div>
     <div class="aside">
@@ -53,11 +59,9 @@
           </div>
         </div>
         <button id="js__task-add"></button>
-        <button class="js__task-save">save</button>
       </div>
     </div>
   </div>
-  <!--przerobić to na divy zamiast headera,asida i section-->
 <script src="script.js"></script>
 <script src="datepicker.js"></script>
 </body>
