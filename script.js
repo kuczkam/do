@@ -35,6 +35,9 @@ let tasks = (() => {
         const taskDate = document.createElement('div');
         const p = document.createElement('p');
         taskDate.innerText = date.innerText;
+        if (taskDate.innerText === '') {
+            taskDate.innerText = 'no deadline';
+        }
         p.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
@@ -122,9 +125,9 @@ let tasks = (() => {
 
     const saveTask = () => {
         const newValue = editInput.value;
-        const li = document.querySelector('.js__to-edit');
+        const p = document.querySelector('li.js__to-edit p');
 
-        li.innerHTML = newValue;
+        p.innerHTML = newValue;
         arrTasks[__taskIndex()] = newValue;
         divEditTask.classList.remove('modal');
         divEditTask.classList.add('hidden');
