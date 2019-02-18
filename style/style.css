@@ -23,7 +23,7 @@ input[type="text"], input[type="date"], textarea, select, button {
 }
 .logo{
   height: 43px;
-  padding-top: 18px;
+  padding-top: 0px;
   padding-right: 20px;
   float: left;
 }
@@ -31,7 +31,7 @@ input[type="text"], input[type="date"], textarea, select, button {
   font-family: canada-type-gibson,sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 48pt;
+  font-size: 35pt;
   color: #21D39B;
   margin: 0;
 }
@@ -41,44 +41,44 @@ p.logo_name span{
 .js__task-add{
   background-image: url(../img/Do_icon_add_active.svg);
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 .js__task-edit{
   background-image: url(../img/Do_icon_edit.svg);
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 .js__task-check{
   background-image: url(../img/Do_icon_check.svg);
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 #js__task-remove{
   background-image: url(../img/Do_icon_delete.svg);
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 button.js__task-edit.active.btn{
   background-image: url(../img/Do_icon_edit_active.svg);
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 button.js__task-check.active.btn{
   background-image: url(../img/Do_icon_check_active.svg);
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 button.js__task-remove.active.btn{
   background-image: url(../img/Do_icon_delete_active.svg) !important;
   background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 .container{
   background-color: #ffffff;
@@ -90,7 +90,7 @@ button.js__task-remove.active.btn{
 }
 .claim{
   font-family: canada-type-gibson,sans-serif;
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: 300;
   color: #BFBFBF;
   width: 464px;
@@ -125,7 +125,7 @@ button{
   cursor: pointer;
 }
 .js__to-edit{
-  color: #FF4954;
+  color: #FF4954 !important;
 }
 .task-date{
   font-family: canada-type-gibson,sans-serif;
@@ -299,4 +299,7 @@ td {
   z-index: 100;
   transition-property: visibility, opacity;
   transition-duration: 0s, 2s; 
+}
+.task_done{
+  color: #BFBFBF;
 }

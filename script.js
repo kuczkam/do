@@ -105,6 +105,7 @@ let tasks = (() => {
         button.addEventListener('click', addTask);
         btnRemove.addEventListener('click', deleteTask);
         btnSaveTask.addEventListener('click', saveTask);
+        btnCheckTask.addEventListener('click', checkTask);
     }
 
 
@@ -157,6 +158,13 @@ let tasks = (() => {
                 el.classList.remove('active');
             }
         });
+    }
+
+    const checkTask = () => {
+        const elem = document.querySelector('#js__tasks li.js__to-edit');
+        if (elem) {
+            elem.classList.add('task_done');
+        }
     }
     
     return {
