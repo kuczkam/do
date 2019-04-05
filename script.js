@@ -23,7 +23,7 @@ let tasks = (() => {
             createTaskElement(input.value);
         }
         input.value = '';
-        date.value = '';
+        date.innerText = '';
     }
   
     const __uniqueId = () => {
