@@ -5,6 +5,7 @@ let tasks = (() => {
     const input         = document.getElementById('js__task-input');
     const list          = document.getElementById('js__tasks');
     const button        = document.getElementById('js__task-add');
+    const buttonClose   = document.getElementById('js__task-add-close');
     const date          = document.getElementById('js__task-date');
     const modalDate     = document.getElementById('js__modal-date');
     const btnRemove     = document.getElementById('js__task-remove');
@@ -84,8 +85,12 @@ let tasks = (() => {
     const bindEvents = () => {
         btnAddTask.addEventListener('click', () => {
             divAddTask.className = 'visible';
+            document.querySelector('.aside').classList.remove('hide');
             getFocus(divAddTask, input);
         });
+        buttonClose.addEventListener('click', () => {
+            document.querySelector('.aside').classList.add('hide');
+        })
         input.addEventListener('keyup', (e) => {
           e.preventDefault();
           if (e.keyCode === 13) {

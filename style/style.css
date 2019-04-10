@@ -31,7 +31,7 @@ input[type="text"], input[type="date"], textarea, select, button {
   font-family: canada-type-gibson,sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 35pt;
+  font-size: 5em;
   color: #21D39B;
   margin: 0;
 }
@@ -82,16 +82,14 @@ button.js__task-remove.active.btn{
 }
 .container{
   background-color: #ffffff;
-  box-shadow: 5px 0 17px -6px #706F6F, -5px 0 15px -5px #706F6F;
-  margin: 0 0 0 15%;
-  width: 80%;
+  width: 100%;
   min-height: 100%;
   padding-top: 100px;
-  margin: 0 10% 0 10%;
+  margin: 0;
 }
 .claim{
   font-family: canada-type-gibson,sans-serif;
-  font-size: 2.3em;
+  font-size: 3em;
   font-weight: 300;
   color: #BFBFBF;
   width: 464px;
@@ -117,7 +115,7 @@ button{
 }
 .todo-element{
   font-family: canada-type-gibson,sans-serif;
-  font-size: 12pt;
+  font-size: 3em;
   font-weight: 300;
   color: #000000;
 }
@@ -131,36 +129,38 @@ button{
 .task-date{
   font-family: canada-type-gibson,sans-serif;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 3em;
 }
 .btn{
   margin: 0 40px 0 0px;
   background-color: transparent;
 }
-.aside{
-  float: right;
-  width: 42%;
-  height: 250px;
+.aside {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #fff;
+  top: 0;
 }
 .task{
   border-radius: 3px 0 0 3px;
   border: none;
   background-image: linear-gradient(to right, #10C8B1 , #29D891);
-  height: 100px;
+  height: 155px;
   padding: 0 0 0 20px;
 }
 .task p{
   font-family: canada-type-gibson,sans-serif;
   color: #ffffff;
   font-weight: 700;
-  font-size: 12pt;
+  font-size: 4em;
   margin-bottom: 0px;
 }
 .date p{
   font-family: canada-type-gibson,sans-serif;
   color: #21D39B;
   font-weight: 700;
-  font-size: 12pt;
+  font-size: 3em;
   margin-bottom: 0;
   padding-left: 20px;
 }
@@ -168,7 +168,7 @@ button{
   font-family: canada-type-gibson,sans-serif;
   color: #21D39B;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 3em;
   margin: 0;
 }
 #js__task-input {
@@ -179,7 +179,7 @@ button{
   border: 0;
   color: #ffffff;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 4em;
 }
 #js__task-input::placeholder{
   color: #c3ecdb;
@@ -188,18 +188,18 @@ button{
   font-family: canada-type-gibson,sans-serif;
   color: #000000;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 3em;
   margin: 0;
 }
 #js__prev, #js__next{
   color: #DCDCDC;
   cursor: pointer;
-  font-size: 12pt;
+  font-size: 3em;
 }
 #js__prev-year, #js__next-year{
   color: #FF4954;
   cursor: pointer;
-  font-size: 12pt;
+  font-size: 3em;
 }
 .alignleft {
   float: left;
@@ -218,7 +218,7 @@ button{
 }
 #table_calendar {
   padding: 10px 0px 0px 0px;
-  width: 390px;
+  width: 100%;
 }
 .cal-navi {
   padding: 50px 0 0 20px;
@@ -227,17 +227,19 @@ button{
   font-family: canada-type-gibson,sans-serif;
   color: #DCDCDC;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 3em;
 }
 .day-of-month {
   background: transparent;
   width: 38px;
 }
-#js__task-add {
-  background-image: url(../img/Do_icon_check_active.svg);
-  background-repeat:no-repeat;
-  width: 40px;
-  height: 40px;
+#js__task-add, #js__task-add-close {
+  border-radius: 3px 0 0 3px;
+  border: none;
+  background-color: #FF4954;  
+  width: 5em;
+  height: 2em;
+  font-size: 3em;
 }
 .day-of-month:hover{
   font-family: canada-type-gibson,sans-serif;
