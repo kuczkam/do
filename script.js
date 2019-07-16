@@ -19,12 +19,17 @@ let tasks = (() => {
     const backdrop      = document.querySelector('.backdrop');
   
     const addTask = () => {
+        const daySelected = document.querySelector('.selected');
         if (input.value !== '') {
             arrTasks.push(input.value);
             createTaskElement(input.value);
         }
         input.value = '';
         date.innerText = '';
+        if (daySelected !== null) {
+            daySelected.classList.remove('selected');
+        }
+        saveInLocalStorage();
     }
   
     const __uniqueId = () => {
@@ -66,6 +71,7 @@ let tasks = (() => {
             }
             __activeClassButton(); 
         }
+        saveInLocalStorage();
     }
 
     const _addClassToFindTask = (e) => {
@@ -111,6 +117,7 @@ let tasks = (() => {
         btnRemove.addEventListener('click', deleteTask);
         btnSaveTask.addEventListener('click', saveTask);
         btnCheckTask.addEventListener('click', checkTask);
+        loadTasks();
     }
 
 
@@ -171,12 +178,26 @@ let tasks = (() => {
             elem.classList.add('task_done');
         }
     }
+
+    const saveInLocalStorage = () => {
+        let str = JSON.stringify(arrTasks);
+        localStorage.setItem("tasks", str);
+    }
+
+    const loadTasks = () => {
+        let str = localStorage.getItem("tasks");
+        tasks = JSON.parse(str);
+        if (!tasks) {
+            tasks = [];
+        }
+    }
     
     return {
         bindEvents: bindEvents,
         addTask: addTask,
         createTaskElement: createTaskElement,
-        deleteTask: deleteTask
+        deleteTask: deleteTask,
+        loadTasks: loadTasks
     }
   })();
 tasks.bindEvents();

@@ -5,8 +5,7 @@ html, body {
   height: 100%;
 }
 body {
-  background: url(../img/Do_pattern.svg);
-  background-size: 110px 110px;
+  background: #fff;
 }
 input[type="text"], input[type="date"], textarea, select, button { 
   outline: none;
@@ -14,6 +13,7 @@ input[type="text"], input[type="date"], textarea, select, button {
 .header{
   display: inline-block;
   width: 100%;
+  margin: 0 0 0 100px;
 }
 .hide {
     display: none !important;
@@ -41,66 +41,60 @@ p.logo_name span{
 .js__task-add{
   background-image: url(../img/Do_icon_add_active.svg);
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 .js__task-edit{
   background-image: url(../img/Do_icon_edit.svg);
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 .js__task-check{
   background-image: url(../img/Do_icon_check.svg);
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 #js__task-remove{
   background-image: url(../img/Do_icon_delete.svg);
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 button.js__task-edit.active.btn{
   background-image: url(../img/Do_icon_edit_active.svg);
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 button.js__task-check.active.btn{
   background-image: url(../img/Do_icon_check_active.svg);
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 button.js__task-remove.active.btn{
   background-image: url(../img/Do_icon_delete_active.svg) !important;
   background-repeat:no-repeat;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 .container{
   background-color: #ffffff;
   width: 100%;
   min-height: 100%;
   padding-top: 100px;
-  margin: 0;
 }
 .claim{
   font-family: canada-type-gibson,sans-serif;
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 300;
   color: #BFBFBF;
-  width: 464px;
-  padding-left: 100px;
+  width: auto;
 }
-.main{
-  float: left;
-  padding: 100px;
-}
-.header__div-logo{
-  padding-left: 20px;
+.main {
+  text-align: center;
 }
 button{
   cursor: pointer;
@@ -112,12 +106,14 @@ button{
 }
 #task-options {
   padding-top: 100px;
+  margin: 0 0 0 17%;
 }
 .todo-element{
   font-family: canada-type-gibson,sans-serif;
   font-size: 3em;
   font-weight: 300;
   color: #000000;
+  padding: 0 0 40px 0;
 }
 .todo-element:hover{
   color: #FF4954;
@@ -129,10 +125,13 @@ button{
 .task-date{
   font-family: canada-type-gibson,sans-serif;
   font-weight: 300;
-  font-size: 3em;
+}
+.todo-element p {
+  margin: 0;
+  font-size: 1.6em;
 }
 .btn{
-  margin: 0 40px 0 0px;
+  margin: 0 100px 0 0px;
   background-color: transparent;
 }
 .aside {
@@ -141,20 +140,23 @@ button{
   position: fixed;
   background: #fff;
   top: 0;
+  left: 0;
 }
 .task{
   border-radius: 3px 0 0 3px;
   border: none;
   background-image: linear-gradient(to right, #10C8B1 , #29D891);
   height: 155px;
-  padding: 0 0 0 20px;
+  padding: 100px 0 0 100px;
 }
 .task p{
   font-family: canada-type-gibson,sans-serif;
   color: #ffffff;
   font-weight: 700;
   font-size: 4em;
-  margin-bottom: 0px;
+  margin: 0;
+  width: 105px;
+  float: left;
 }
 .date p{
   font-family: canada-type-gibson,sans-serif;
@@ -173,8 +175,9 @@ button{
 }
 #js__task-input {
   font-family: canada-type-gibson,sans-serif;
-  height: 60px;
-  width: 100%;
+  height: 66px;
+  width: 80%;
+  padding-left: 50px;
   background: transparent;
   border: 0;
   color: #ffffff;
@@ -203,8 +206,9 @@ button{
 }
 .alignleft {
   float: left;
-  text-align:left;
-  width: 18.66666%;
+  text-align: left;
+  width: 33.66666%;
+  padding-left: 30px;
 }
 .aligncenter {
   float: left;
@@ -213,15 +217,15 @@ button{
 }
 .alignright {
   float: left;
-  text-align:right;
-  width: 20.66666%;
+  text-align: right;
+  width: 33.66666%;
 }
 #table_calendar {
   padding: 10px 0px 0px 0px;
   width: 100%;
 }
 .cal-navi {
-  padding: 50px 0 0 20px;
+  padding: 50px 0 120px 20px;
 }
 .day-of-week{
   font-family: canada-type-gibson,sans-serif;
@@ -231,15 +235,15 @@ button{
 }
 .day-of-month {
   background: transparent;
-  width: 38px;
 }
 #js__task-add, #js__task-add-close {
-  border-radius: 3px 0 0 3px;
+  border-radius: 10px 10px 10px 10px;
   border: none;
   background-color: #FF4954;  
   width: 5em;
   height: 2em;
   font-size: 3em;
+  color: #fff;
 }
 .day-of-month:hover{
   font-family: canada-type-gibson,sans-serif;
@@ -304,5 +308,11 @@ td {
   transition-duration: 0s, 2s; 
 }
 .task_done{
-  color: #BFBFBF;
+  color: #BFBFBF !important;
+}
+.add-task__btn {
+  padding: 8% 0px 0px 20%;
+}
+.add-task__btn button {
+  margin-right: 130px;
 }
