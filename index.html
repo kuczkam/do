@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/uwk2kwc.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="manifest" href="manifest.json">
     <title>Do.</title>
   </head>
   <body>
@@ -65,7 +66,12 @@
       </div>
     </div>
   </div>
+<script>
+  var withBreaks = "Hello World. \n My name is Jennifer. \n What is your name?";
+  document.getElementsByClassName("claim").innerHTML = withBreaks;
+</script>
 <script src="script.js"></script>
 <script src="datepicker.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
