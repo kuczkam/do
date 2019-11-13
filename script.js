@@ -75,7 +75,7 @@ let tasks = (() => {
     }
 
     const _addClassToFindTask = (e) => {
-        if (e.target.tagName === 'P') {
+        if (e.target.tagName === 'P' || e.target.tagName === 'DIV') {
             const c = document.querySelector('#js__tasks li.js__to-edit');
             const item = e.target.closest('LI');
             if (c !== null) {
