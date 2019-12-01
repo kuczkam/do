@@ -1,7 +1,7 @@
 const datepicker = (() => {
     'use strict'
     const arr_month     = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const arr_days      = ["M","T","W","T","F","S","S"];
+    const arr_days      = ["S","M","T","W","T","F","S"];
     const thead         = document.getElementById('js__day-of-week');
     const tbody         = document.getElementById('js__days');
     const p_name        = document.getElementById('js__month-year');
@@ -79,7 +79,7 @@ const datepicker = (() => {
             tbody.appendChild(tr_w);
 
             for ( let rw = 0; rw < 7; rw++ ) {
-                if ( offSet === 1 || offSet === 0) {
+                if (offSet === 0) {
                     const td_rw = document.createElement("TD");
                     const btn = document.createElement("BUTTON");
                     btn.setAttribute('class', 'day-of-month');

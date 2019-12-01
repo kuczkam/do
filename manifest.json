@@ -3,20 +3,15 @@
     "name": "Todo List",
     "icons": [
       {
-        "src": "/img/icons8-todo-list-64.png",
-        "type": "image/png",
-        "sizes": "64x64"
-      },
-      {
-        "src": "/img/icon-144x144.png",
+        "src": "/do/img/do-144x144.png",
         "type": "image/png",
         "sizes": "144x144"
       }
     ],
-    "start_url": "/?source=pwa",
-    "background_color": "#3367D6",
+    "start_url": "/do/?source=pwa",
+    "background_color": "#6C00BC",
     "display": "standalone",
-    "scope": "/",
-    "theme_color": "#3367D6",
+    "scope": "/do/",
+    "theme_color": "#6C00BC",
     "orientation": "portrait-primary"
   }

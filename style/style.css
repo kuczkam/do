@@ -1,4 +1,5 @@
 html, body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
@@ -87,14 +88,14 @@ button.js__task-remove.active.btn{
   padding-top: 100px;
 }
 .claim{
-  font-family: canada-type-gibson,sans-serif;
   font-size: 2em;
   font-weight: 300;
   color: #BFBFBF;
   width: auto;
 }
 .main {
-  text-align: center;
+  text-align: left;
+  padding-top: 100px;
 }
 button{
   cursor: pointer;
@@ -102,33 +103,32 @@ button{
 }
 #js__tasks{
   list-style-type: none;
+  margin: 0 0 0 100px;
   padding-left: 0;
 }
 #task-options {
   padding-top: 100px;
-  margin: 0 0 0 17%;
+  margin: 0 0 17% 17%;
 }
 .todo-element{
-  font-family: canada-type-gibson,sans-serif;
-  font-size: 3em;
   font-weight: 300;
   color: #000000;
   padding: 0 0 40px 0;
-}
-.todo-element:hover{
-  color: #FF4954;
-  cursor: pointer;
 }
 .js__to-edit{
   color: #FF4954 !important;
 }
 .task-date{
-  font-family: canada-type-gibson,sans-serif;
+  font-size: 3em;
   font-weight: 300;
+  padding-top: 10px;
 }
 .todo-element p {
   margin: 0;
-  font-size: 1.6em;
+  word-break: break-word;
+}
+.todo-element__item{
+  font-size: 4em;
 }
 .btn{
   margin: 0 100px 0 0px;
@@ -162,20 +162,16 @@ button{
   font-family: canada-type-gibson,sans-serif;
   color: #21D39B;
   font-weight: 700;
-  font-size: 3em;
-  margin-bottom: 0;
-  padding-left: 20px;
+  font-size: 4em;
 }
-#js__task-date{
+#js__task-date, #js__modal-date{
   font-family: canada-type-gibson,sans-serif;
   color: #21D39B;
   font-weight: 300;
-  font-size: 3em;
   margin: 0;
 }
 #js__task-input {
-  font-family: canada-type-gibson,sans-serif;
-  height: 66px;
+  height: 70px;
   width: 80%;
   padding-left: 50px;
   background: transparent;
@@ -183,12 +179,12 @@ button{
   color: #ffffff;
   font-weight: 300;
   font-size: 4em;
+  caret-color: #000000;
 }
 #js__task-input::placeholder{
   color: #c3ecdb;
 }
 #js__month-year, .day-of-month {
-  font-family: canada-type-gibson,sans-serif;
   color: #000000;
   font-weight: 300;
   font-size: 3em;
@@ -208,27 +204,25 @@ button{
   float: left;
   text-align: left;
   width: 33.66666%;
-  padding-left: 30px;
+  padding-left: 14px;
 }
 .aligncenter {
   float: left;
   text-align:center;
-  width: 21.66666%;
+  width: 22.66666%;
 }
 .alignright {
   float: left;
   text-align: right;
-  width: 33.66666%;
+  width: 41.66666%;
 }
 #table_calendar {
-  padding: 10px 0px 0px 0px;
-  width: 100%;
+  width: 106.4%;
 }
 .cal-navi {
   padding: 50px 0 120px 20px;
 }
 .day-of-week{
-  font-family: canada-type-gibson,sans-serif;
   color: #DCDCDC;
   font-weight: 300;
   font-size: 3em;
@@ -236,7 +230,7 @@ button{
 .day-of-month {
   background: transparent;
 }
-#js__task-add, #js__task-add-close {
+#js__task-add, #js__task-add-close, #js__task-add-edit {
   border-radius: 10px 10px 10px 10px;
   border: none;
   background-color: #FF4954;  
@@ -246,15 +240,14 @@ button{
   color: #fff;
 }
 .day-of-month:hover{
-  font-family: canada-type-gibson,sans-serif;
   color: #FF4954;
   font-weight: 700; 
 }
 td {
   text-align: center;
+  padding-right: 27px;
 }
 .selected{
-  font-family: canada-type-gibson,sans-serif;
   color: #FF4954;
   font-weight: 700; 
 }
@@ -288,4 +281,15 @@ td {
 }
 .add-task__btn button {
   margin-right: 130px;
+}
+.sort{
+  visibility: hidden;
+  display: none;
+}
+#datepicker {
+  margin-left: -32px;
+  padding-right: 100px;
+}
+.date {
+  padding-left: 100px;
 }

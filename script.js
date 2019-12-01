@@ -7,16 +7,12 @@ let tasks = (() => {
     const button        = document.getElementById('js__task-add');
     const buttonClose   = document.getElementById('js__task-add-close');
     const date          = document.getElementById('js__task-date');
-    const modalDate     = document.getElementById('js__modal-date');
     const btnRemove     = document.getElementById('js__task-remove');
     const divAddTask    = document.getElementById('js__task-add_div');
-    const divEditTask   = document.getElementById('js__task-edit_div');
-    const editInput     = document.getElementById('js__mytask');
     const btnEdittask   = document.querySelector('.js__task-edit');
     const btnAddTask    = document.querySelector('.js__task-add');
-    const btnSaveTask   = document.querySelector('.js__task-save');
+    const btnSaveTask   = document.getElementById('js__task-add-edit');
     const btnCheckTask  = document.querySelector('.js__task-check');
-    const backdrop      = document.querySelector('.backdrop');
   
     const addTask = () => {
         const daySelected = document.querySelector('.selected');
@@ -29,7 +25,10 @@ let tasks = (() => {
         if (daySelected !== null) {
             daySelected.classList.remove('selected');
         }
+        __sortList();
         saveInLocalStorage();
+        document.querySelector('.aside').classList.add('hide');
+        history.pushState(null, null, "./");
     }
   
     const __uniqueId = () => {
@@ -39,18 +38,26 @@ let tasks = (() => {
     const createTaskElement = (value) => {
         const element = document.createElement('li');
         const taskDate = document.createElement('div');
+        const sort = document.createElement('div');
         const p = document.createElement('p');
         taskDate.innerText = date.innerText;
+        var dateInMilliseconds = Date.parse(taskDate.innerText.replace(/.{6}/g, "$&,"));
+        sort.innerHTML = dateInMilliseconds;
         if (taskDate.innerText === '') {
             taskDate.innerText = 'no deadline';
+            sort.innerHTML = Date.parse("31 Dec, 2200");
         }
         p.innerText = value;
         element.setAttribute('class', 'todo-element');
         element.setAttribute('id', __uniqueId());
         p.setAttribute('id', __uniqueId());
+        p.setAttribute('class', 'todo-element__item');
         taskDate.setAttribute('class', 'task-date');
+        taskDate.setAttribute('id', __uniqueId());
+        sort.setAttribute('class', 'sort');
         element.appendChild(p);
         element.appendChild(taskDate);
+        element.appendChild(sort);
         list.appendChild(element);
     }
 
@@ -76,48 +83,67 @@ let tasks = (() => {
 
     const _addClassToFindTask = (e) => {
         if (e.target.tagName === 'P' || e.target.tagName === 'DIV') {
-            const c = document.querySelector('#js__tasks li.js__to-edit');
-            const item = e.target.closest('LI');
-            if (c !== null) {
-                c.classList.remove('js__to-edit');
-            }
+          const c = document.querySelector('#js__tasks li.js__to-edit');
+          const item = e.target.closest('LI');
+          const hasEditClass = item.classList.contains('js__to-edit')
+          if (c !== null) {
+            c.classList.remove('js__to-edit');
+            __activeClassButton(e);
+          }
+          if (!hasEditClass) {
             item.classList.add('js__to-edit');
             __activeClassButton(e);
-
-            return e.target.id;
+          }
         }
-}
+      }
 
     const bindEvents = () => {
+        //add and edit start
         btnAddTask.addEventListener('click', () => {
+            input.value = '';
+            date.innerText = '';
             divAddTask.className = 'visible';
             document.querySelector('.aside').classList.remove('hide');
             getFocus(divAddTask, input);
+            history.pushState(null, null, "./modal");
         });
         buttonClose.addEventListener('click', () => {
             document.querySelector('.aside').classList.add('hide');
-        })
+            button.classList.remove('hide');
+            btnSaveTask.classList.add('hide');;
+            history.pushState(null, null, "./");
+        });
         input.addEventListener('keyup', (e) => {
           e.preventDefault();
           if (e.keyCode === 13) {
             button.click();
+            history.pushState(null, null, "./");
           }
-        });
-        document.addEventListener('keyup', (e) => {
-            e.preventDefault();
-            if (e.keyCode === 27) {
-                backdrop.classList.add('hidden');
-                divEditTask.classList.add('hidden');                
-            }
         });
         btnEdittask.addEventListener('click', __editTask);
         btnSaveTask.addEventListener('click', saveTask);
+        //add edit stop
+
         list.addEventListener('click', _addClassToFindTask);
         button.addEventListener('click', addTask);
+        
         btnRemove.addEventListener('click', deleteTask);
-        btnSaveTask.addEventListener('click', saveTask);
         btnCheckTask.addEventListener('click', checkTask);
-        loadTasks();
+
+        loadFromLocalStorage();
+        __sortList();
+        window.addEventListener('popstate', e => {
+            e.preventDefault();
+            document.querySelector('.aside').classList.add('hide');
+        });
+
+        var storage = localStorage.getItem("tasks");
+        var claim = document.querySelector('.claim');
+        if (storage) {
+            claim.classList.add('hide');
+        } else {
+            claim.classList.remove('hide');
+        }
     }
 
 
@@ -125,38 +151,42 @@ let tasks = (() => {
         const p = document.querySelector('li.js__to-edit p');
         const elementId = p.getAttribute('id');
         const val = document.getElementById(elementId).innerText;
-        const date = document.querySelector('.task-date').innerText;
-        divEditTask.classList.remove('hidden');
-        divEditTask.classList.add('modal');
-        backdrop.classList.remove('hidden');
-
-        editInput.value = val;
-        modalDate.textContent = date;
-
-        getFocus(divEditTask, editInput);  
+        const modalDate = document.querySelector('li.js__to-edit div.task-date');
+        const dateId = modalDate.getAttribute('id');
+        const dateVal = document.getElementById(dateId);
+        document.querySelector('.aside').classList.remove('hide');
+        divAddTask.className = 'visible';
+        button.classList.add('hide');
+        btnSaveTask.classList.remove('hide');
+        history.pushState(null, null, "./modal");
+        input.value = val;
+        date.textContent = dateVal.innerText;
+        getFocus(divAddTask, input);
     }
 
     const saveTask = () => {
-        const newValue = editInput.value;
+        const newValue = input.value;
         const p = document.querySelector('li.js__to-edit p');
+        const sort = document.querySelector('li.js__to-edit div.sort');
+        const taskDate = document.querySelector('li.js__to-edit div.task-date');
+        var dateInMilliseconds = Date.parse(taskDate.innerText.replace(/.{6}/g, "$&,"));
 
         p.innerHTML = newValue;
         arrTasks[__taskIndex()] = newValue;
-        divEditTask.classList.remove('modal');
-        divEditTask.classList.add('hidden');
-        closeModal();
+        taskDate.innerHTML = date.innerText;
+        sort.innerHTML = dateInMilliseconds;
+        button.classList.remove('hide');
+        btnSaveTask.classList.add('hide');
+        document.querySelector('.aside').classList.add('hide');
+        history.pushState(null, null, "./");
+        
+        __sortList();
+        saveInLocalStorage();
     }
 
     const getFocus = (a, b) => {
         if (a.classList.contains('visible')) {
             b.focus();
-        }
-    }
-    
-    const closeModal = () => {
-        if (backdrop) {
-            backdrop.classList.add('hidden');
-            divEditTask.classList.add('hidden');
         }
     }
 
@@ -166,6 +196,9 @@ let tasks = (() => {
         [].forEach.call(btn, (el) => {
             if (selector !== null) {
                 el.classList.add('active');
+                if (selector.classList.contains('task_done')) {
+                    btnCheckTask.classList.remove('active');
+                }
             } else {
                 el.classList.remove('active');
             }
@@ -175,29 +208,40 @@ let tasks = (() => {
     const checkTask = () => {
         const elem = document.querySelector('#js__tasks li.js__to-edit');
         if (elem) {
-            elem.classList.add('task_done');
+            elem.classList.toggle('task_done');
+            btnCheckTask.classList.toggle('active');
+            saveInLocalStorage();
         }
     }
 
     const saveInLocalStorage = () => {
-        let str = JSON.stringify(arrTasks);
-        localStorage.setItem("tasks", str);
-    }
-
-    const loadTasks = () => {
-        let str = localStorage.getItem("tasks");
-        tasks = JSON.parse(str);
-        if (!tasks) {
-            tasks = [];
+        localStorage.setItem('tasks', list.innerHTML);
+        if ( localStorage.getItem('tasks') === "" ) {
+            localStorage.removeItem('tasks');
         }
     }
-    
+
+    const loadFromLocalStorage = () => {
+        var saved = localStorage.getItem('tasks');
+        if (saved) {
+            list.innerHTML = saved;
+        }
+    }
+
+    const __sortList = () => {
+        var todoList = new List('todos', {
+            valueNames: ['sort']
+        });
+        todoList.sort("sort", {
+            order: "asc"
+        });
+    }
+
     return {
         bindEvents: bindEvents,
         addTask: addTask,
         createTaskElement: createTaskElement,
-        deleteTask: deleteTask,
-        loadTasks: loadTasks
+        deleteTask: deleteTask
     }
   })();
 tasks.bindEvents();

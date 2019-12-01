@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/uwk2kwc.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <title>Do.</title>
   </head>
@@ -20,30 +21,23 @@
           </p>
         </div>
       </div>
-    <div class="main">
-      <ul id="js__tasks"></ul>
+    <div class="main" id="todos">
+      <ul id="js__tasks" class="list"></ul>
       <div id="task-options">
         <button class="js__task-add btn"></button>
         <button class="js__task-edit btn"></button>
         <button id="js__task-remove" class="js__task-remove btn"></button>
         <button class="js__task-check btn"></button>
       </div>
-      <div class="backdrop hidden"></div>
-      <div id="js__task-edit_div" class="hidden">
-        <input id="js__mytask" value="">
-        <p id="js__modal-date"></p>
-        <button class="js__task-save">save</button>
-      </div>
     </div>
-    <div class="aside hide">
+    <div class="aside hide" id="modal">
       <div id="js__task-add_div" class="hidden">
         <div class="task">
           <p>Do.</p>
           <input id="js__task-input" class="focus" type="text" placeholder="task" autofocus>
         </div>
         <div class="date">
-          <p>Deadline.</p>
-          <p id="js__task-date"></p>
+          <p>Deadline. <span id="js__task-date"></span></p>
           <div id="datepicker">
             <div class="cal-navi">
               <i id="js__prev" class="fas fa-angle-left alignleft"></i>
@@ -60,18 +54,15 @@
         </div>
         <div class="add-task__btn">
           <button id="js__task-add">Save</button>
+          <button id="js__task-add-edit" class="hide">Save</button>
           <button id="js__task-add-close">Close</button>
         </div>
-
       </div>
     </div>
   </div>
-<script>
-  var withBreaks = "Hello World. \n My name is Jennifer. \n What is your name?";
-  document.getElementsByClassName("claim").innerHTML = withBreaks;
-</script>
-<script src="script.js"></script>
-<script src="datepicker.js"></script>
-<script src="app.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script src="script.js"></script>
+  <script src="datepicker.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
