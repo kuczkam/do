@@ -1,5 +1,8 @@
 .tc-container {
-   position: absolute; 
-   width: auto; height: auto; 
+   position: fixed; 
+   left: 0;
+   top: 50%;
+   width: auto; 
+   height: auto; 
    background: #d80348;
 }
